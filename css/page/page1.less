@@ -1,0 +1,148 @@
+/*page1.less*/
+
+body{
+
+	background: url(../images/game1/game1_bg.jpg) no-repeat center bottom;
+}
+
+
+.wrapper{
+
+	.tree-number-box{ 
+		
+		width: 306px;
+		left: 40px;
+		bottom: 25px;
+		.tree-number-pic{
+			display: inline-block;
+			width: 260px;
+			height: 64px;
+
+			background: url(../images/game1/game1_tree_number.png) no-repeat;
+		}
+		.tree-number{
+			font-size: 54px;
+			color: #fff;
+			margin-left: -14px;
+		}
+	}
+
+	.time-box{
+
+		width: 204px;
+		height: 123px;
+		left: 20px;
+		top: 20px;
+		
+		color: #fff;
+		background: url(../images/game1/game1_time_box.png) no-repeat;
+
+		.time-leave{
+			font-size: 104px;
+			letter-spacing: 26px;
+			margin-left: 22px;
+		}
+	}
+
+	.game-arrow{
+
+		width: 90px; 
+		height: 90px;
+		left: 96px;
+		bottom: 560px;
+		background: url(../images/game1/game1_arrow_left.png) no-repeat;
+	}
+
+	.game-arrow-r{
+		background-image: url(../images/game1/game1_arrow_right.png);
+	}
+
+	.tree-box{
+		
+		right: 0;
+		bottom: 70px;
+		width: 570px;
+		height:1368px;
+
+		.tree-box-top{
+			width: 570px;
+			height: 819px;
+			right: 0; 
+			top: 140px;
+			background: url(../images/game1/tree_top_left.png) no-repeat;
+			z-index: 10;
+		}
+
+		.tree-box-bottom{
+			width: 191px;
+			height: 549px;
+			right: 0; 
+			bottom: 0;
+			background: url(../images/game1/tree_bottom_left.png) no-repeat;
+			z-index: 5;
+		}
+
+		.tree-box-saw{
+
+			width: 549px;
+			height: 152px;
+			right: -75px;
+			bottom: 420px;
+			background: url(../images/game1/game1_saw_left.png) no-repeat;
+			z-index: 8;
+		}
+	}
+}
+
+.bg-r{
+
+	background-image: url(../images/game1/game1_bg_r.jpg) no-repeat;
+
+	.wrapper{
+
+		.tree-number-box{ 
+			
+			left: inherit;
+			right: 20px;
+			
+		}
+
+		.time-box{
+			
+			left: inherit;
+			right: 20px;
+		}
+
+		.game-arrow{
+			
+			left: inherit;
+			right: 96px;
+		}
+
+		.tree-box{
+		
+			right: inherit;
+			left: 0;
+
+			.tree-box-top{
+				
+				right: inherit; 
+				left: 0;
+				background-image: url(../images/game1/tree_top_right.png);
+			}
+
+			.tree-box-bottom{
+				right: inherit; 
+				left: 0;
+				background-image: url(../images/game1/tree_bottom_right.png);
+			}
+
+			.tree-box-saw{
+				
+				right: inherit;
+				left: -75px;
+				background-image: url(../images/game1/game1_saw_right.png);
+			}
+		}
+	}
+}

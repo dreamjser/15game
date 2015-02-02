@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+		<meta charset="utf-8">
+		<meta name="author" content="Tencent-CP">
+		<meta name="Copyright" content="Tencent" />
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport"  content="width=750, user-scalable=no, target-densitydpi=device-dpi">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="Description" content="">
+		<meta name="Keywords" content="腾讯游戏 纷享快乐 线上游乐场 游戏">
+		<title>我们15个理想生活养成记</title>
+		<link rel="stylesheet" href="css/game1.css">
+		<script type="test/javascript" src="js/meta-device.jg"></script>
+	</head>
+	<body class="bg-r">
+		
+		<!-- 游戏区域 -->
+		<div class="fullscreen wrapper">
+			
+			<div class="pa tree-number-box">
+				<span class="tree-number-pic"></span><span class="tree-number" id="tree_number">0</span>
+			</div>
+
+			<div class="pa time-box">
+				<span id="time_leave" class="time-leave">60</span>
+			</div>
+
+			<div id="arrow" class="pa game-arrow"></div>
+
+			<div class="pa tree-box">
+				
+				<div class="pa tree-box-top"></div>
+
+				<div class="pa tree-box-bottom"></div>
+
+				<div class="pa tree-box-saw"></div>
+
+			</div>
+		</div>
+		
+		<!-- 显示二维码 -->
+		<div id="code" class="pa fullscreen game-code none">
+			
+			<div class="code-title"></div>
+
+			<div class="pr tc code-desc">
+				<p>在实现理想生活的过程中，我们会遇到各种</p>
+				<p>各样的考验。首先，我们就要采集木头</p>
+				<p>创造一处理想住所。快与好友一起</p>
+				<p>协作完成吧！</p>
+				<div class="pa code-icon"></div>
+			</div>
+
+			<div class="code-pic">
+				<img id="code_pic" class="img-100" src="images/game1/code.png" alt="二维码">
+			</div>
+
+			<div class="code-invite"></div>
+		</div>
+		
+		<!-- 链接成功 -->
+		<div id="link" class="pa fullscreen game-link none">
+			
+			<div class="tc link-title">链接成功</div>
+
+			<div class="link-icon"></div>
+
+			<div class="link-desc">
+				
+				<p class="tc ques-icon">
+					<span>游戏说明</span>
+				</p>
+
+				<ul>
+					<li>点击开始进入游戏。玩家需在60秒内轮流滑动屏幕锯断大树，锯断木头越多得分越高。</li>
+					<li>注：在游戏过程中尽量保持两台手机相近。锯锯更健康，近点更有爱！</li>
+				</ul>
+			</div>
+
+			<div class="link-sure"></div>
+		</div>
+		
+		<!-- 进入游戏倒计时 -->
+		<div id="time" class="pa fullscreen game-time none">
+			
+			<div class="time-box">
+				
+				<div class="tc time-title">
+					开始倒数
+				</div>
+
+				<div class="time-center">
+					<div id="time_num" class="time-circle">3</div>
+				</div>
+			</div>
+			
+		</div>
+
+		<script type="text/javascript">
+
+		    // var require = {
+		
+		    //      urlArgs: 't=20141030126'
+		    // };
+		
+		</script>
+
+		<script type="text/javascript" src="js/lib/require.js" data-main="js/game1" defer async></script>
+
+	</body>
+</html>
