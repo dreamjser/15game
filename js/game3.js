@@ -1,20 +1,28 @@
 require.config({
-	baseUrl : 'js',
-	paths : {
-		"zepto"  : 'lib/zepto',
-		"public" : 'module/public',
-		"api"    : 'module/api'
+	baseUrl: 'js',
+	paths: {
+		"zepto": 'lib/zepto',
+		'io': 'lib/socket.io-1.3.2',
+		'qrcode': 'lib/qrcode.min',
+		"public": 'module/public'
 	},
-	shim : {
+	shim: {
 
-		'zepto' : {
+		'zepto': {
 
 			exports: 'Zepto'
+		},
+		'io': {
+			exports: 'io'
+		},
+		'qrcode': {
+
+			exports: 'QRCode'
 		}
 	}
-	
+
 });
-require(['zepto','public','api'], function($, Pub, Api) {
+require(['zepto', 'io', 'qrcode', 'public'], function($, io, qrcode, Pub) {
 
 	
 

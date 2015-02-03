@@ -17,19 +17,19 @@
 	<body class="bg-r">
 		
 		<!-- 游戏区域 -->
-		<div class="fullscreen wrapper">
+		<div id="wrapper" class="fullscreen wrapper">
 			
-			<div class="pa tree-number-box">
+			<div id="time_num_box" class="pa tree-number-box none">
 				<span class="tree-number-pic"></span><span class="tree-number" id="tree_number">0</span>
 			</div>
 
-			<div class="pa time-box">
+			<div id="time_box" class="pa time-box none">
 				<span id="time_leave" class="time-leave">60</span>
 			</div>
 
-			<div id="arrow" class="pa game-arrow"></div>
+			<div id="arrow" class="pa game-arrow none"></div>
 
-			<div class="pa tree-box">
+			<div id="tree_box" class="pa tree-box none">
 				
 				<div class="pa tree-box-top"></div>
 
@@ -37,6 +37,17 @@
 
 				<div class="pa tree-box-saw"></div>
 
+			</div>
+
+			<div id="sun" class="pa game1-sun"></div>
+
+			<div class="pa game1-cloud none"></div>
+
+			<div class="pa game1-cloud none"></div>
+		</div>
+
+		<div id="loading" class="pa fullscreen loading">
+			<div class="pa loading-icon">
 			</div>
 		</div>
 		
@@ -46,16 +57,11 @@
 			<div class="code-title"></div>
 
 			<div class="pr tc code-desc">
-				<p>在实现理想生活的过程中，我们会遇到各种</p>
-				<p>各样的考验。首先，我们就要采集木头</p>
-				<p>创造一处理想住所。快与好友一起</p>
-				<p>协作完成吧！</p>
+				<div class="code-desc-pic"></div>
 				<div class="pa code-icon"></div>
 			</div>
 
-			<div class="code-pic">
-				<img id="code_pic" class="img-100" src="images/game1/code.png" alt="二维码">
-			</div>
+			<div id="code_box" class="code-pic"></div>
 
 			<div class="code-invite"></div>
 		</div>
@@ -63,20 +69,12 @@
 		<!-- 链接成功 -->
 		<div id="link" class="pa fullscreen game-link none">
 			
-			<div class="tc link-title">链接成功</div>
+			<div class="tc link-title"></div>
 
 			<div class="link-icon"></div>
 
 			<div class="link-desc">
-				
-				<p class="tc ques-icon">
-					<span>游戏说明</span>
-				</p>
-
-				<ul>
-					<li>点击开始进入游戏。玩家需在60秒内轮流滑动屏幕锯断大树，锯断木头越多得分越高。</li>
-					<li>注：在游戏过程中尽量保持两台手机相近。锯锯更健康，近点更有爱！</li>
-				</ul>
+				<div class="link-desc-pic"></div>
 			</div>
 
 			<div class="link-sure"></div>
@@ -88,7 +86,7 @@
 			<div class="time-box">
 				
 				<div class="tc time-title">
-					开始倒数
+					
 				</div>
 
 				<div class="time-center">
@@ -100,10 +98,10 @@
 
 		<script type="text/javascript">
 
-		    // var require = {
+		    var require = {
 		
-		    //      urlArgs: 't=20141030126'
-		    // };
+		         urlArgs: 't='+new Date().getTime()
+		    };
 		
 		</script>
 

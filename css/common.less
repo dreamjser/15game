@@ -40,8 +40,31 @@ body{
 
 	left: 0;
 	top: 0;
-	background: rgba(0,0,0,0.8);
-	z-index: 10;
+	background: rgba(0,0,0,0.88);
+	z-index: 999;
+}
+
+.loading{
+	
+	left: 0;
+	top: 0;
+	background: #000;
+	z-index: 9999;
+
+	.loading-icon{
+
+		width: 158px;
+		height: 146px;
+		left: 50%;
+		top: 50%;
+		margin-left: -88px;
+		margin-top: -80px;
+		z-index: 9999;
+		background: url(../images/game1/loading1.png) no-repeat;
+		-webkit-transform-origin:center center;
+		-webkit-animation:loading 4s linear infinite;
+
+	}
 }
 
 .game-code{
@@ -66,6 +89,13 @@ body{
 		border-bottom: 1px @borderColor solid;
 		font-size: 30px;
 
+		.code-desc-pic{
+
+			width: 576px;
+			height: 131px;
+			background: url(../images/game1/game1_code_write.png) no-repeat;
+		}
+
 		.code-icon{
 			
 			width: 132px;
@@ -80,9 +110,10 @@ body{
 
 	.code-pic{
 
-		width: 322px;
+		width: 232px;
 		margin: 0 auto 50px;
-		
+		padding: 20px;
+		background: #fff;
 	}
 
 	.code-invite{
@@ -109,10 +140,11 @@ body{
 		margin-top: -280px;
 
 		.time-title{
-
-			font-size: 74px;
-			color: #fff;
-			letter-spacing: 4px;
+			
+			width: 290px;
+			height: 76px;
+			margin: 0 auto;
+			background: url(../images/game1/game1_time_title.png) no-repeat;
 		}
 
 		.time-center{
@@ -143,17 +175,17 @@ body{
 
 	.link-title{
 		
-		margin-top: 110px;
-		font-size: 74px;
-		color: #fff;
-		letter-spacing: 4px;
+		width: 291px;
+		height: 75px;
+		margin: 110px auto 0px;
+		background: url(../images/game1/game1_link_title.png) no-repeat;
 	}
 
 	.link-icon{
 
 		width: 106px;
 		height: 106px;
-		margin: 10px auto 50px;
+		margin: 20px auto 50px;
 		background: url(../images/game1/game1_link_icon.png) no-repeat;
 	}
 
@@ -166,6 +198,13 @@ body{
 		font-size: 32px;
 		color: #fff;
 		padding: 25px 0 50px;
+
+		.link-desc-pic{
+
+			width: 524px;
+			height: 298px;
+			background: url(../images/game1/game1_link_desc.png) no-repeat;
+		}
 
 		.ques-icon{
 
@@ -197,4 +236,13 @@ body{
 		margin: 50px auto 0;
 		background: url(../images/game1/game1_link_sure.png) no-repeat;
 	}
+}
+
+@-webkit-keyframes loading
+{
+0%   { -webkit-transform:rotateY(0); background-image: url(../images/game1/loading1.png);}
+25%  { -webkit-transform:rotateY(90deg);}
+50%  { -webkit-transform:rotateY(180deg); background-image: url(../images/game1/loading2.png);}
+75%  { -webkit-transform:rotateY(270deg);}
+100% { -webkit-transform:rotateY(0deg);}
 }

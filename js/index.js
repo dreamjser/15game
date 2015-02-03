@@ -2,8 +2,7 @@ require.config({
 	baseUrl: 'js',
 	paths: {
 		"zepto": 'lib/zepto',
-		"public": 'module/public',
-		"api": 'module/api'
+		"public": 'module/public'
 	},
 	shim: {
 
@@ -14,7 +13,7 @@ require.config({
 	}
 
 });
-require(['zepto', 'public', 'api'], function($, Pub, Api) {
+require(['zepto', 'public'], function($, Pub) {
 
 	var logo = $('#logo'),
 		slogan = $('#slogan'),

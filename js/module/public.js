@@ -1,4 +1,3 @@
-
 define(['zepto'], function() {
 
 	var SPEED = 900,
@@ -23,13 +22,13 @@ define(['zepto'], function() {
 		setTimeout(result, time);
 	}
 
-	return{
+	return {
 
-		SPEED : SPEED,
+		SPEED: SPEED,
 
-		delay : delay,
+		delay: delay,
 
-		ani : ani
+		ani: ani,
 	}
 
 });
