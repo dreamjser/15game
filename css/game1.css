@@ -262,9 +262,17 @@ body {
   margin-left: -88px;
   margin-top: -80px;
   z-index: 9999;
+}
+.loading .loading-icon div {
   background: url(../images/game1/loading1.png) no-repeat;
   -webkit-transform-origin: center center;
   -webkit-animation: loading 4s linear infinite;
+  z-index: 10;
+}
+.loading .loading-icon div:last-child {
+  background-image: url(../images/game1/loading2.png);
+  z-index: 5;
+  -webkit-animation: loading2 4s linear infinite;
 }
 .game-code {
   left: 0;
@@ -406,20 +414,57 @@ body {
 @-webkit-keyframes loading {
   0% {
     -webkit-transform: rotateY(0);
-    background-image: url(../images/game1/loading1.png);
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
   }
   25% {
     -webkit-transform: rotateY(90deg);
+    opacity: 0;
   }
   50% {
     -webkit-transform: rotateY(180deg);
-    background-image: url(../images/game1/loading2.png);
+    opacity: 0;
   }
   75% {
     -webkit-transform: rotateY(270deg);
+    opacity: 0;
+  }
+  76% {
+    opacity: 1;
   }
   100% {
-    -webkit-transform: rotateY(0deg);
+    -webkit-transform: rotateY(360deg);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes loading2 {
+  0% {
+    -webkit-transform: rotateY(0) scaleX(-1);
+    opacity: 0;
+  }
+  24% {
+    opacity: 0;
+  }
+  25% {
+    -webkit-transform: rotateY(90deg) scaleX(-1);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: rotateY(180deg) scaleX(-1);
+    opacity: 1;
+  }
+  75% {
+    -webkit-transform: rotateY(270deg) scaleX(-1);
+    opacity: 1;
+  }
+  76% {
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateY(360deg) scaleX(-1);
+    opacity: 0;
   }
 }
 /*page1.less*/
