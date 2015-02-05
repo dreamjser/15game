@@ -11,13 +11,16 @@
 		<meta name="Description" content="">
 		<meta name="Keywords" content="腾讯游戏 纷享快乐 线上游乐场 游戏">
 		<title>我们15个理想生活养成记</title>
-		<link rel="stylesheet" href="css/game1.css">
-		<script type="test/javascript" src="js/meta-device.jg"></script>
+		<link rel="stylesheet" href="css/game1.css?v=0.1.5">
+		<script type="test/javascript" src="js/meta-device.js"></script>
 	</head>
-	<body class="bg-r">
+	<body>
 		
 		<!-- 游戏区域 -->
 		<div id="wrapper" class="fullscreen wrapper">
+
+			<audio id="audio_success" src="audio/game1/success.mp3"  preload="auto" class="none"></audio>
+			<audio id="audio_fail" src="audio/game1/fail.mp3"  preload="auto" class="none"></audio>
 			
 			<div id="time_num_box" class="pa tree-number-box none">
 				<span class="tree-number-pic"></span><span class="tree-number" id="tree_number">0</span>
@@ -31,11 +34,11 @@
 
 			<div id="tree_box" class="pa tree-box none">
 				
-				<div class="pa tree-box-top"></div>
+				<div id="tree_top" class="pa tree-box-top"></div>
 
 				<div class="pa tree-box-bottom"></div>
 
-				<div class="pa tree-box-saw"></div>
+				<div id="saw" class="pa tree-box-saw"></div>
 
 			</div>
 
@@ -46,6 +49,56 @@
 			<div class="pa game1-cloud none"></div>
 		</div>
 
+		<!-- 分享 -->
+		<div id="share" class="pa fullscreen game-share none">
+			
+			<div class="game-share-top">
+
+				<div class="game-share-head pr">
+					<div class="pa">
+						<img src="images/game1/head.jpg" alt="">
+						<p class="tc">蒙奇·D·路飞</p>
+					</div>
+					<div class="pa plus">+</div>
+					<div class="pa">
+						<img src="images/game1/head.jpg" alt="">
+						<p class="tc">蒙奇·D·路飞</p>
+					</div>
+				</div>
+
+				<div class="game-share-title pr">
+					
+					<span id="share_num" class="pa">3</span>
+				</div>
+
+				<div class="game-share-score pr">
+
+					<span id="share_score" class="pa">87</span>
+				</div>
+
+				<div class="game-share-words pr">
+					
+					<div class="game-share-wordspic">
+						
+					</div>
+					<div class="pa game-share-icon"></div>
+				</div>
+			</div>
+
+			<div class="game-share-bottom">
+				
+				<div class="clearfix">
+					<a href="#" class="fl game-restart"></a>
+					<a href="#" class="fr game-price"></a>
+				</div>
+
+				<div class="clearfix">
+					<a href="#" class="game-detail"></a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- loading -->
 		<div id="loading" class="pa fullscreen loading">
 			<div class="pa loading-icon">
 				<div class="pa fullscreen"></div>
@@ -79,7 +132,7 @@
 				<div class="link-desc-pic"></div>
 			</div>
 
-			<div class="link-sure"></div>
+			<div id="link_sure" class="link-sure"></div>
 		</div>
 		
 		<!-- 进入游戏倒计时 -->
@@ -87,12 +140,22 @@
 			
 			<div class="time-box">
 				
-				<div class="tc time-title">
-					
-				</div>
+				<div class="tc time-title"></div>
 
 				<div class="time-center">
-					<div id="time_num" class="time-circle">3</div>
+					<div class="time-circle">
+
+						<div id="time_num" class="pa fullscreen time-circle-num">3</div>
+
+						<div class="hold hold1">
+
+							<div class="pie pie1"></div>
+						</div>
+						
+						<div class="hold hold2">
+						    <div class="pie pie2"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			

@@ -38,7 +38,10 @@ require(['zepto', 'public'], function($, Pub) {
 
 				delay(function(){
 
-					menu.fadeIn(ANI_time);
+					$('.index-sun,.index-cloud1,.index-cloud2').fadeIn(ANI_time, function(){
+
+						menu.fadeIn(ANI_time);
+					});
 
 				}, SPEED)
 				

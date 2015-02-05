@@ -17,10 +17,32 @@ define(['zepto'], function() {
 		nextTime && delay(next, nextTime);
 	}
 
+	//圆形倒计时
+	function circleAni(){
+
+		$(".pie1").animate({rotate : '180deg'},2000,function(){
+
+			$(".pie2").animate({rotate : '180deg'},2000);
+		});
+		
+	}
+
 	function delay(result, time) {
 
 		setTimeout(result, time);
 	}
+
+	//获取URL参数
+	function getUrlParam(name) {
+
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) {
+			return unescape(r[2]);
+		}
+		return null;
+	}
+
 
 	return {
 
@@ -29,6 +51,10 @@ define(['zepto'], function() {
 		delay: delay,
 
 		ani: ani,
+
+		getUrlParam : getUrlParam,
+
+		circleAni : circleAni
 	}
 
 });

@@ -1,3 +1,4 @@
+
 /*page1.less*/
 
 body{
@@ -5,20 +6,27 @@ body{
 	background: url(../images/game1/game1_bg.jpg) no-repeat center bottom;
 }
 
+.tree-left-bg{
+	background: url(../images/game1/tree_left.png) no-repeat;
+}
+
+.tree-right-bg{
+	background: url(../images/game1/tree_right.png) no-repeat;
+}
 
 .wrapper{
 
 	.tree-number-box{ 
 		
-		width: 306px;
+		width: 312px;
 		left: 40px;
 		bottom: 25px;
 		.tree-number-pic{
 			display: inline-block;
 			width: 260px;
 			height: 64px;
-
-			background: url(../images/game1/game1_tree_number.png) no-repeat;
+			.game1-bg;
+			background-position: -408px -671px;
 		}
 		.tree-number{
 			font-size: 54px;
@@ -35,7 +43,8 @@ body{
 		top: 20px;
 		z-index: 100;
 		color: #fff;
-		background: url(../images/game1/game1_time_box.png) no-repeat;
+		.public-bg;
+		background-position: -310px -4px;
 
 		.time-leave{
 			font-size: 104px;
@@ -50,11 +59,12 @@ body{
 		height: 90px;
 		left: 96px;
 		bottom: 560px;
-		background: url(../images/game1/game1_arrow_left.png) no-repeat;
+		.game1-bg;
+		background-position: -602px 0;
 	}
 
 	.game-arrow-r{
-		background-image: url(../images/game1/game1_arrow_right.png);
+		background-position: -698px 0;
 	}
 
 	.tree-box{
@@ -70,7 +80,8 @@ body{
 			height: 819px;
 			right: 0; 
 			top: 140px;
-			background: url(../images/game1/tree_top_left.png) no-repeat;
+			.tree-left-bg;
+			background-position: 0 -701px;
 			z-index: 10;
 		}
 
@@ -79,7 +90,8 @@ body{
 			height: 549px;
 			right: 0; 
 			bottom: 0;
-			background: url(../images/game1/tree_bottom_left.png) no-repeat;
+			.tree-left-bg;
+			background-position: 0 -152px;
 			z-index: 5;
 		}
 
@@ -89,7 +101,8 @@ body{
 			height: 152px;
 			right: -75px;
 			bottom: 420px;
-			background: url(../images/game1/game1_saw_left.png) no-repeat;
+			.tree-left-bg;
+			background-position: 0 0;
 			z-index: 8;
 		}
 	}
@@ -98,7 +111,8 @@ body{
 
 		width: 266px;
 		height: 79px;
-		background: url(../images/game1/game1_cloud.png) no-repeat;
+		.game1-bg;
+		background-position: 0 -662px;
 		left: 360px;
 		bottom: 680px;
 		-webkit-animation:cloud 30s linear infinite;
@@ -128,6 +142,8 @@ body{
 
 	.wrapper{
 
+		overflow: hidden;
+
 		.tree-number-box{ 
 			
 			left: inherit;
@@ -156,20 +172,23 @@ body{
 				
 				right: inherit; 
 				left: 0;
-				background-image: url(../images/game1/tree_top_right.png);
+				.tree-right-bg;
+				background-position: 0px -701px;
 			}
 
 			.tree-box-bottom{
 				right: inherit; 
 				left: 0;
-				background-image: url(../images/game1/tree_bottom_right.png);
+				.tree-right-bg;
+				background-position: 0px -152px;
 			}
 
 			.tree-box-saw{
 				
 				right: inherit;
 				left: -75px;
-				background-image: url(../images/game1/game1_saw_right.png);
+				.tree-right-bg;
+				background-position: 0 0;
 			}
 		}
 	}
@@ -191,7 +210,8 @@ body{
 		height: 77px;
 		left: 540px;
 		bottom: 780px;
-		background: url(../images/game1/game1_sun.png) no-repeat;
+		.game1-bg;
+		background-position: -288px -662px;
 		
 	}
 }

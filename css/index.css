@@ -209,7 +209,20 @@ input {
 .ml15 {
   margin-left: 15px;
 }
-/*common.less*/
+.img-100 {
+  display: block;
+  width: 100%;
+}
+/*page.less*/
+.bg-index {
+  background: url(../images/index/index_all.png) no-repeat;
+}
+.z-top {
+  z-index: 10;
+}
+.index-animation {
+  -webkit-animation: cloud 40s linear infinite;
+}
 html,
 body {
   width: 100%;
@@ -220,39 +233,29 @@ body {
   position: relative;
   width: 750px;
   margin: 0 auto;
-  background-size: cover;
   overflow: hidden;
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   -webkit-user-select: none;
-}
-.fullscreen {
-  width: 100%;
-  height: 100%;
-}
-.wrapper {
-  position: relative;
-}
-/*page.less*/
-.bg-cover {
-  background-size: cover;
-}
-body {
   background: url(../images/index/index_bg.jpg) no-repeat center bottom;
   background-size: cover;
 }
 .index-logo {
   width: 271px;
   height: 132px;
-  top: 30px;
+  top: 26px;
   left: 240px;
-  background: url(../images/index/index_all.png) no-repeat 0px 0px;
+  background: url(../images/index/index_all.png) no-repeat;
+  z-index: 10;
+  background-position: 0px -602px;
 }
 .index-slogan {
-  width: 678px;
-  height: 589px;
-  top: -10px;
-  left: -8px;
-  background: url(../images/index/index_slogan.gif);
+  width: 598px;
+  height: 459px;
+  top: -14px;
+  left: 64px;
+  background: url(../images/index/index_all.png) no-repeat;
+  z-index: 10;
+  background-position: 0 -143px;
 }
 .index-menu {
   width: 452px;
@@ -260,7 +263,9 @@ body {
   padding-top: 10px;
   top: 520px;
   left: 160px;
-  background: url(../images/index/index_all.png) no-repeat 0px -134px;
+  background: url(../images/index/index_all.png) no-repeat;
+  z-index: 10;
+  background-position: 0px -736px;
 }
 .index-menu p {
   margin-top: 58px;
@@ -272,4 +277,56 @@ body {
 .index-menu p a {
   display: block;
   height: 100%;
+}
+.index-sun {
+  width: 78px;
+  height: 77px;
+  left: 32px;
+  top: 450px;
+  background: url(../images/index/index_all.png) no-repeat;
+  background-position: -513px -1px;
+}
+.index-cloud1 {
+  width: 266px;
+  height: 79px;
+  left: -110px;
+  top: 506px;
+  background: url(../images/index/index_all.png) no-repeat;
+  z-index: 8;
+  background-position: 0 -69px;
+  -webkit-animation: cloud 40s linear infinite;
+}
+.index-cloud2 {
+  width: 214px;
+  height: 64px;
+  left: 542px;
+  top: 600px;
+  background: url(../images/index/index_all.png) no-repeat;
+  background-position: 0 0px;
+  -webkit-animation: cloud 40s linear infinite;
+  -webkit-animation-delay: 1s;
+}
+.index-cloud3 {
+  left: 600px;
+  top: 286px;
+  z-index: 0;
+  -webkit-animation: cloud 40s linear infinite;
+  -webkit-animation-delay: 0.5s;
+}
+@-webkit-keyframes cloud {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  25% {
+    -webkit-transform: translate3d(80px, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  75% {
+    -webkit-transform: translate3d(-50px, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
 }
