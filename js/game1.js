@@ -34,6 +34,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		link = $('#link'),
 		time = $('#time'),
 		share = $('#share'),
+		restart = $('#restart'),
 		audio_success = $('#audio_success')[0],
 		audio_fail = $('#audio_fail')[0],
 		time_num = $('#time_num'),
@@ -88,7 +89,13 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			this.beginTime();
 
-			bindTouchEvent();
+			restart.click(function(){
+
+				Game.restartGame();
+
+				$(this).unbind('click');
+			});
+
 		},
 
 		beginTime: function() {
@@ -114,10 +121,28 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			isEnd = true;
 
-			share.show();
+			share.fadeIn(CONFIG.duration);
+		},
+
+		restartGame : function(){
+
+			isEnd = false;
+			sawY = 0;
+			tree_total_num = 0;
+			tree_number.html(0);
+			CONFIG.time = 60;
+			time_leave.html(CONFIG.time);
+			time_num.html(3);
+			arrow.removeClass(CONFIG.sawLangClass);
+			$('.pie').css({'-webkit-transform':'rotate(0deg)'});
+			saw.css({'-webkit-transform' : 'translate3d(0,0,0)'});
+
+			share.hide();
+			gameTimeBegin();
 		}
 
 	}
+
 
 	//生成二维码
 	function createCode(url) {
@@ -428,6 +453,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		}
 
 		loadImg();
+
+		bindTouchEvent();
 
 		forbTouchMove();
 		
