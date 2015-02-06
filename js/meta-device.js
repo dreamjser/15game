@@ -1,3 +1,10 @@
+(function(){
+
+	var image = new Image();
+
+	image.src = 'images/loading.png';
+});
+
 (function() {
 	var phoneWidth = parseInt(window.screen.width);
 	var phoneScale = phoneWidth / 750;

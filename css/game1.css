@@ -275,16 +275,16 @@ body {
   z-index: 9999;
 }
 .loading .loading-icon div {
-  background: url(../images/public.png) no-repeat;
-  background-position: 0 -384px;
+  background: url(../images/loading.png) no-repeat;
+  background-position: 0 0px;
   -webkit-transform-origin: center center;
-  -webkit-animation: loading 3s linear infinite;
+  -webkit-animation: loading 2s linear infinite;
   z-index: 10;
 }
 .loading .loading-icon div:last-child {
-  background-position: -160px -384px;
+  background-position: 0 -160px;
   z-index: 5;
-  -webkit-animation: loading2 3s linear infinite;
+  -webkit-animation: loading2 2s linear infinite;
 }
 .game-share {
   overflow: hidden;

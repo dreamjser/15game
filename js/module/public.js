@@ -18,13 +18,41 @@ define(['zepto'], function() {
 	}
 
 	//圆形倒计时
-	function circleAni(){
+	function circleAni() {
 
-		$(".pie1").animate({rotate : '180deg'},2000,function(){
+		$(".pie1").animate({
+			rotate: '180deg'
+		}, 500, function() {
 
-			$(".pie2").animate({rotate : '180deg'},2000);
+			$(".pie2").animate({
+				rotate: '180deg'
+			}, 500, function() {
+
+				result(function() {
+
+					result();
+				});
+			});
 		});
-		
+
+		function result(callback) {
+
+			callback = callback ? callback : function() {};
+
+			$('.pie').css({
+				'-webkit-transform': 'rotate(0)'
+			});
+
+			$(".pie1").animate({
+				rotate: '180deg'
+			}, 500, function() {
+
+				$(".pie2").animate({
+					rotate: '180deg'
+				}, 500, callback);
+			});
+		}
+
 	}
 
 	function delay(result, time) {
@@ -52,9 +80,9 @@ define(['zepto'], function() {
 
 		ani: ani,
 
-		getUrlParam : getUrlParam,
+		getUrlParam: getUrlParam,
 
-		circleAni : circleAni
+		circleAni: circleAni
 	}
 
 });

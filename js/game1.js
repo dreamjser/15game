@@ -35,6 +35,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		time = $('#time'),
 		share = $('#share'),
 		restart = $('#restart'),
+		share_num = $('#share_num'),
 		audio_success = $('#audio_success')[0],
 		audio_fail = $('#audio_fail')[0],
 		time_num = $('#time_num'),
@@ -62,7 +63,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		duration: 800,
 
-		time: 60,
+		// Time: 60,
+
+		time: 10,
 
 		sawCount : 4,
 
@@ -72,14 +75,15 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 	};
 
 	var socket,
+		time_number = CONFIG.time,
 		tree_total_num = 0,
 		roomId = Pub.getUrlParam('chat'),
 		isLeft = false,
 		isTouch = true,
 		isTreeFade = false,
 		isEnd = false,
-		IO_URL = '116.213.76.9:7000/?chat=';;
-
+		// IO_URL = '192.168.1.32:7000/?chat=';
+		IO_URL = '116.213.76.9:7000/?chat=';
 
 	var Game = {
 
@@ -90,6 +94,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			this.beginTime();
 
 			restart.click(function(){
+
+				socket.emit('replay');
 
 				Game.restartGame();
 
@@ -102,11 +108,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			var beginTimeAuto = setInterval(function() {
 
-				CONFIG.time--;
+				time_number--;
 
-				time_leave.html(formatInt(CONFIG.time));
+				time_leave.html(formatInt(time_number));
 
-				if (CONFIG.time <= 0) {
+				if (time_number <= 0) {
 
 					clearInterval(beginTimeAuto);
 
@@ -121,7 +127,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			isEnd = true;
 
-			share.fadeIn(CONFIG.duration);
+			share_num.html(tree_total_num);
+
+			share.fadeIn('fast');
 		},
 
 		restartGame : function(){
@@ -130,15 +138,16 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			sawY = 0;
 			tree_total_num = 0;
 			tree_number.html(0);
-			CONFIG.time = 60;
-			time_leave.html(CONFIG.time);
+			time_number = CONFIG.time;
+			time_leave.html(time_number);
 			time_num.html(3);
 			arrow.removeClass(CONFIG.sawLangClass);
 			$('.pie').css({'-webkit-transform':'rotate(0deg)'});
 			saw.css({'-webkit-transform' : 'translate3d(0,0,0)'});
 
 			share.hide();
-			gameTimeBegin();
+			// gameTimeBegin();
+			showConnectSuccess();
 		}
 
 	}
@@ -219,15 +228,18 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			autoTime = setInterval(function(){
 
-				time_num.html(t);
-
-				t--;
-
-				if(t<0){
+				if(t<=1){
 					time.hide();
 					clearInterval(autoTime);
 					Game.startGame();
+					return;
 				}
+
+				t--;
+
+				time_num.html(t);
+
+				
 			},1000);
 	}
 
@@ -269,6 +281,18 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			socket.on('confirm', function(data) {
 				
 				gameTimeBegin();
+			});
+
+			socket.on('exit', function(data) {
+				
+				console.log('exit');
+			});
+
+			socket.on('replay', function(data) {
+				
+				console.log('replay');
+
+				Game.restartGame();
 			});
 
 			// 游戏开始
@@ -331,12 +355,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			tree_top.animate({translate3d : '0,-200px,0'}, CONFIG.duration,function(){
 
-				tree_box.fadeOut(CONFIG.duration, function(){
+				tree_top.fadeOut(CONFIG.duration, function(){
 
-					tree_top.css({'-webkit-transform' : 'translate3d(0,0,0)'});
+					tree_top.css({'-webkit-transform' : 'translate3d(0,0,0)'}).show();
 					saw.css({'-webkit-transform' : 'translate3d(0,0,0)'});
-					tree_box.show();
-
+					
 					sawY = 0;
 					isTreeFade = false;
 				});
@@ -381,33 +404,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 	}
 
 
-	//初始化页面动画
-	function initAnimate() {
-
-		wrapper.children('div').show();
-
-		/*tree_box.fadeIn(CONFIG.duration);
-
-		delay(function() {
-
-			game1_sun.fadeIn(CONFIG.duration);
-
-			game1_cloud.fadeIn(CONFIG.duration, function() {
-
-				delay(function() {
-
-					time_num_box.fadeIn(CONFIG.duration);
-					time_box.fadeIn(CONFIG.duration);
-					arrow.fadeIn(CONFIG.duration);
-
-				}, 350);
-
-			});
-
-		}, 350);*/
-	}
-
-
 	//格式化数字
 	function formatInt(number) {
 
@@ -431,7 +427,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		imgLoader.completed(function(){
 
-			loading.hide();
+			loading.fadeOut('fast');
 			connectSocket();
 		});
 
@@ -439,6 +435,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 	}
 
 	function init() {
+
+		time_leave.html(CONFIG.time);
 
 		setRoomId();
 
@@ -458,8 +456,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		forbTouchMove();
 		
-		initAnimate();
-
 	}
 
 	init();
