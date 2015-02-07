@@ -10,7 +10,7 @@
 }
 
 .index-animation{
-	-webkit-animation:cloud 40s linear infinite;
+	-webkit-animation:cloud 30s linear infinite;
 }
 
 html,body{ 
@@ -36,22 +36,34 @@ body{
 
 	width: 271px;
 	height: 132px;
-	top: 26px;
+	top: 22px;
 	left: 240px;
 	.bg-index;
 	.z-top;
-	background-position:  0px -602px;
+	background-position:  0px -307px;
 }
 
 .index-slogan{
 
-	width: 598px;
-	height: 459px;
-	top: -14px;
-	left: 64px;
+	width: 451px;
+	height: 440px;
+	top: 10px;
+	left: 149px;
+	.bg-index;
+	z-index: 8;
+	background-position:  0 -1020px;
+}
+
+.index-title{
+
+	width: 625px;
+	height: 165px;
+	top: 144px;
+	left: 68px;
 	.bg-index;
 	.z-top;
-	background-position:  0 -143px;
+	background-position:  0 -439px;
+
 }
 
 .index-menu{
@@ -59,20 +71,20 @@ body{
 	width: 452px;
 	height: 120px;
 	left: 150px;
-	top: 520px;
+	top: 480px;
 	.bg-index;
 	.z-top;
-	background-position:  0px -736px;
+	background-position:  0px -600px;
 }
 
 .index-menu2{
-	background-position:  0px -886px;
-	top: 662px;
+	background-position:  0px -748px;
+	top: 622px;
 }
 
 .index-menu3{
-	background-position:  0px -1028px;
-	top: 808px;
+	background-position:  0px -896px;
+	top: 768px;
 }
 
 .index-sun{
@@ -82,7 +94,7 @@ body{
 	left: 32px;
 	top: 450px;
 	.bg-index;
-	background-position:  -513px -1px;
+	background-position:  0px -151px;
 
 }
 
@@ -94,7 +106,7 @@ body{
 	top: 506px;
 	.bg-index;
 	z-index: 8;
-	background-position: 0 -69px;
+	background-position: 0 -228px;
 	.index-animation;
 }
 
@@ -105,7 +117,7 @@ body{
 	left: 542px;
 	top: 600px;
 	.bg-index;
-	background-position: 0 0px;
+	background-position: 0 -87px;
 	.index-animation;
 	-webkit-animation-delay:1s;
 }
@@ -119,6 +131,42 @@ body{
 	-webkit-animation-delay:0.5s;
 }
 
+.index-read{
+
+	left: 0;
+	top: 0;
+	background: rgba(0,0,0,0.88);
+	z-index: 2222;
+
+	.index-read-pic{
+
+		width: 617px;
+		height: 897px;
+		margin: 60px auto 30px;
+		background: url(../images/index/price.png) no-repeat;
+	}
+
+	.index-read-close{
+
+		width: 132px;
+		height: 61px;
+		margin: 0 auto;
+		.bg-index;
+		background-position: 0 -26px;
+	}
+}
+
+
+.index-read-btn{
+
+	width: 391px;
+	height: 26px;
+	left: 179px;
+	bottom: 40px;
+	.bg-index;
+	background-position: 0 0;
+}
+
 @-webkit-keyframes cloud
 {
 0%   { -webkit-transform:translate3d(0,0,0);}
@@ -126,4 +174,36 @@ body{
 50%  { -webkit-transform:translate3d(0,0,0);}
 75%  { -webkit-transform:translate3d(-50px,0,0);}
 100% { -webkit-transform:translate3d(0,0,0);}
+}
+
+@media only screen and (device-height:480px) {
+	
+	.index-read{
+	
+		.index-read-pic{
+
+			-webkit-transform:scale(0.95);
+
+			margin-top: 10px;
+
+			margin-bottom: 5px;
+		}
+	}
+	
+}
+
+@media only screen and (device-width:800px) and (device-height:1280px) {
+	
+	
+	.index-read{
+		
+		.index-read-pic{
+
+			-webkit-transform:scale(0.95);
+
+			margin-top: 5px;
+
+			margin-bottom: 5px;
+		}
+	}
 }

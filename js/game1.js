@@ -34,6 +34,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		link = $('#link'),
 		time = $('#time'),
 		share = $('#share'),
+		exit = $('#exit'),
+		exit_sure = $('#exit_sure'),
 		restart = $('#restart'),
 		share_num = $('#share_num'),
 		audio_success = $('#audio_success')[0],
@@ -65,7 +67,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		// Time: 60,
 
-		time: 10,
+		time: 20,
 
 		sawCount : 4,
 
@@ -82,7 +84,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		isTouch = true,
 		isTreeFade = false,
 		isEnd = false,
-		// IO_URL = '192.168.1.32:7000/?chat=';
+		isLink = false,
+		isLoad = false,
 		IO_URL = '116.213.76.9:7000/?chat=';
 
 	var Game = {
@@ -205,8 +208,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		link_sure.click(function(){
 
-			alert(111);
-
 			socket.emit('confirm');
 
 			$(this).unbind('click');
@@ -286,6 +287,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			socket.on('exit', function(data) {
 				
 				console.log('exit');
+
+				exit.show();
 			});
 
 			socket.on('replay', function(data) {
@@ -301,6 +304,10 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 				console.log("游戏开始" + new Date().toLocaleString());
 
 				showConnectSuccess();
+
+				isLink = true;
+
+				hideLoading();
 			});
 
 			socket.on('gameover', function(data) {
@@ -344,6 +351,15 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		});
 	}
 
+	//绑定断开连接页面确定按钮
+	function bindExitSure(){
+
+		exit_sure.click(function(){
+
+			location.reload();
+		});
+	}
+
 	//锯木头成功
 	function sawTreeSuccess(data) {
 
@@ -383,15 +399,15 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			arrow.removeClass(CONFIG.sawLangClass);
 
-			X = 50;
+			X = 120;
 		} else {
 
 			arrow.addClass(CONFIG.sawLangClass);
 
-			X = -50;
+			X = -120;
 		}
 
-		sawY += 6;
+		sawY += 8;
 
 		saw.animate({
 
@@ -400,9 +416,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		}, 300, function() {
 
 			isTouch = true;
-		});
-	}
 
+		}, 'easeIn');
+	}
 
 	//格式化数字
 	function formatInt(number) {
@@ -427,11 +443,32 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		imgLoader.completed(function(){
 
-			loading.fadeOut('fast');
+			isLoad = true;
+
 			connectSocket();
+
+			hideLoading();
 		});
 
 		imgLoader.start();
+	}
+
+	//隐藏loading
+	function hideLoading(){
+
+		if(!isLeft){
+
+			if(isLink && isLoad && !isLeft){
+
+				loading.fadeOut('fast');
+
+			}
+
+		}else{
+
+			loading.fadeOut('fast');
+		}
+		
 	}
 
 	function init() {
@@ -449,6 +486,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			imgArr.push('images/game1/game1_bg_r.jpg');
 			imgArr.push('images/game1/tree_right.png');
 		}
+
+		bindExitSure();
 
 		loadImg();
 

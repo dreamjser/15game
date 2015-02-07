@@ -286,6 +286,47 @@ body {
   z-index: 5;
   -webkit-animation: loading2 2s linear infinite;
 }
+.game-exit {
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 999;
+  left: 0;
+  top: 0;
+  z-index: 1111;
+}
+.game-exit .game-exit-title {
+  width: 296px;
+  height: 86px;
+  margin: 120px auto 0;
+  background: url(../images/public.png) no-repeat;
+  background-position: 0 -372px;
+}
+.game-exit .game-exit-icon {
+  width: 118px;
+  height: 118px;
+  margin: 10px auto 50px;
+  background: url(../images/public.png) no-repeat;
+  background-position: -544px 0;
+}
+.game-exit .game-exit-words {
+  width: 510px;
+  margin: 0 auto;
+  padding: 50px 0;
+  border-top: 1px #9c9c9c solid;
+  border-bottom: 1px #9c9c9c solid;
+}
+.game-exit .game-exit-words .game-exit-wordspic {
+  width: 526px;
+  height: 80px;
+  background: url(../images/public.png) no-repeat;
+  background-position: 0 -452px;
+}
+.game-exit .game-exit-sure {
+  width: 188px;
+  height: 90px;
+  margin: 90px auto 0;
+  background: url(../images/public.png) no-repeat;
+  background-position: -410px -202px;
+}
 .game-share {
   overflow: hidden;
   background: rgba(0, 0, 0, 0.88);
@@ -297,8 +338,8 @@ body {
 }
 .game-share .game-share-top {
   width: 700px;
-  height: 880px;
-  margin: 24px auto 30px;
+  height: 830px;
+  margin: 24px auto 20px;
   border-radius: 10px;
   overflow: hidden;
   background: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#b5b5b5));
@@ -306,7 +347,7 @@ body {
 .game-share .game-share-top .game-share-head {
   width: 500px;
   height: 276px;
-  margin: 20px auto 40px;
+  margin: 10px auto 40px;
 }
 .game-share .game-share-top .game-share-head div {
   width: 180px;
@@ -642,21 +683,6 @@ body {
   }
 }
 @media only screen and (max-device-height: 480px) {
-  .game-share .game-share-top {
-    height: 720px;
-    margin: 10px auto;
-  }
-  .game-share .game-share-top .game-share-head {
-    margin: -10px auto 10px;
-  }
-  .game-share .game-share-top .game-share-score {
-    margin: 30px auto 70px;
-  }
-  .game-share .game-share-bottom div:last-child {
-    margin-top: -10px;
-  }
-}
-@media only screen and (device-width: 400px) and (device-height: 640px) {
   .game-share .game-share-top {
     height: 720px;
     margin: 10px auto;

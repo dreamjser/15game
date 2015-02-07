@@ -91,6 +91,58 @@ body{
 	}
 }
 
+.game-exit{
+
+	.game-mask;
+
+	left: 0;
+	top: 0;
+	z-index: 1111;
+
+	.game-exit-title{
+		
+		width: 296px;
+		height: 86px;
+		margin: 120px auto 0;
+		.public-bg;
+		background-position: 0 -372px;
+
+	}
+
+	.game-exit-icon{
+
+		width: 118px;
+		height: 118px;
+		margin: 10px auto 50px;
+		.public-bg;
+		background-position: -544px 0;
+	}
+
+	.game-exit-words{
+
+		width: 510px;
+		margin: 0 auto;
+		padding: 50px 0;
+		border-top: 1px @borderColor solid;
+		border-bottom: 1px @borderColor solid;
+
+		.game-exit-wordspic{
+			width: 526px;
+			height: 80px;
+			.public-bg;
+			background-position: 0 -452px;
+		}
+	}
+
+	.game-exit-sure{
+		width: 188px;
+		height: 90px;
+		margin: 90px auto 0;
+		.public-bg;
+		background-position: -410px -202px;
+	}
+}
+
 .game-share{
 
 	@readColor:#9e1818;
@@ -106,8 +158,8 @@ body{
 	.game-share-top{
 
 		width: 700px;
-		height: 880px;
-		margin: 24px auto 30px;
+		height: 830px;
+		margin: 24px auto 20px;
 		border-radius: 10px;
 		overflow: hidden;
 		background:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#b5b5b5));
@@ -116,7 +168,7 @@ body{
 
 			width: 500px;
 			height: 276px;
-			margin: 20px auto 40px;
+			margin: 10px auto 40px;
 
 			div{
 				
@@ -512,35 +564,6 @@ body{
 	
 }
 
-@media only screen and (device-width:400px) and (device-height:640px) {
-	
-	.game-share{
-		
-		.game-share-top{
-
-			height: 720px;
-			margin: 10px auto;
-
-			.game-share-head{
-				margin: -10px auto 10px;
-			}
-
-			.game-share-score{
-				margin: 30px auto 70px;
-			}
-		}
-
-		.game-share-bottom{
-
-			div{
-				&:last-child{
-					margin-top: -10px;
-				}
-			}
-		}
-	}
-	
-}
 
 @media only screen and (device-width:800px) and (device-height:1280px) {
 	

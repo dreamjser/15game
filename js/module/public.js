@@ -1,7 +1,7 @@
 define(['zepto'], function() {
 
-	var SPEED = 900,
-		EASING = 'easeOut';
+	var SPEED = 400,
+		EASING = 'easeIn';
 
 	function ani(node, css, next, nextTime) {
 

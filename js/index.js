@@ -19,64 +19,108 @@ require(['zepto', 'public', 'load'], function($, Pub, load) {
 
 	var logo = $('#logo'),
 		slogan = $('#slogan'),
+		title = $('#title'),
+		close = $('#close'),
+		read = $('#read'),
 		menu = $('.index-menu'),
-		SPEED = 200,
-		ANI_time = 500,
+		read_btn = $('#read_btn'),
+		SPEED = 260,
+		ANI_time = 600,
+		EASEING = 'easeOut',
 		delay = Pub.delay,
 		doAni = Pub.ani,
 		ImgLoader = load.ImgLoader;
 
 	var imgArr = [
 
-					'images/index/index_bg.jpg',
-					'images/index/index_all.png'
-				 ];
+		'images/index/index_bg.jpg',
+		'images/index/index_all.png'
+	];
+
+	function bindClose(){
+
+		close.click(function(){
+
+			read.fadeOut('fast');
+		});
+
+		read_btn.click(function(){
+
+			read.fadeIn('fast');
+		});
+	}
 
 	function init() {
 
 		$('#loading').fadeOut('fast');
 
-		var initCss = {
-			'-webkit-transform': 'translate3d(0,-40px,0)',
-			'opacity': 0,
+		bindClose();
+
+		var sloganCss = {
+			'-webkit-transform': 'scale(0)',
 			'display': 'block'
 		};
-
+		var logoCss = {
+			'-webkit-transform': 'rotateY(90deg)',
+			'display': 'block'
+		};
+		var titleCss = {
+			'-webkit-transform': 'translate3d(-700px,0,0)',
+			'display': 'block'
+		};
 		var menuCss = {
-
-			'-webkit-transform': 'translate3d(-600px,0,0)',
+			'-webkit-transform': 'translate3d(0,80px,0)',
 			'opacity': 0,
 			'display': 'block'
 		}
 
-		doAni(slogan, initCss, function() {
+		delay(function() {
 
-			doAni(logo, initCss, function(){
+			slogan.css(sloganCss).animate({
+				scale: 1
+			}, ANI_time, EASEING);
 
-				delay(function(){
+			delay(function() {
 
-					$('.index-sun,.index-cloud1,.index-cloud2').fadeIn(ANI_time, function(){
+				logo.css(logoCss).animate({
+					rotateY: 0
+				}, ANI_time, EASEING);
 
-							doAni(menu.eq(0), menuCss, function(){
+				delay(function() {
 
-						  		doAni(menu.eq(1), menuCss, function(){
+					title.css(titleCss).animate({
+						translate3d: '0,0,0'
+					}, ANI_time, EASEING);
 
-						  			doAni(menu.eq(2), menuCss, function(){
+					delay(function(){
 
-						  				
+						doAni(menu.eq(0), menuCss, function(){
 
-						  			}, SPEED);
+					  		doAni(menu.eq(1), menuCss, function(){
 
-						  		}, SPEED);
+					  			doAni(menu.eq(2), menuCss, function(){
 
-							}, SPEED);
-					});
+					  				$('.index-sun,.index-cloud1,.index-cloud2').fadeIn('fast',function(){
 
-				}, SPEED)
-				
-			},SPEED);
+					  					read_btn.fadeIn('fast');
+					  				});
+					  				
+
+					  			}, 2*SPEED);
+
+					  		}, SPEED);
+
+						}, SPEED);
+
+					}, SPEED+100);
+
+				}, SPEED);
+
+			}, SPEED);
+
 
 		}, SPEED);
+
 	}
 
 	var imgLoader = new ImgLoader(imgArr);
