@@ -65,15 +65,17 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		duration: 800,
 
-		// Time: 60,
+		// time: 60,
 
-		time: 20,
+		time: 10,
 
 		sawCount : 4,
 
 		rightClass: 'bg-r',
 
-		sawLangClass: 'game-arrow-r'
+		sawLangClass: 'game-arrow-r',
+
+		linkClass : 'link-sure2'
 	};
 
 	var socket,
@@ -86,6 +88,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		isEnd = false,
 		isLink = false,
 		isLoad = false,
+		// IO_URL = '192.168.1.133:7000/?chat=';
 		IO_URL = '116.213.76.9:7000/?chat=';
 
 	var Game = {
@@ -149,7 +152,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			saw.css({'-webkit-transform' : 'translate3d(0,0,0)'});
 
 			share.hide();
-			// gameTimeBegin();
 			showConnectSuccess();
 		}
 
@@ -208,9 +210,17 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		link_sure.click(function(){
 
-			socket.emit('confirm');
+			if($(this).hasClass(CONFIG.linkClass)){
 
-			$(this).unbind('click');
+				socket.emit('confirm');
+
+				$(this).unbind('click');
+
+			}else{
+
+				$(this).addClass(CONFIG.linkClass);
+			}
+			
 		});
 
 	}
