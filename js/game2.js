@@ -414,15 +414,15 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		bindTouchEvent();
 
-		// if (!isLeft) {
+		if (!isLeft) {
 
-		// 	imgArr.push('images/game1/game1_bg.jpg');
-		// 	imgArr.push('images/game1/tree_left.png');
+			imgArr.push('images/game1/game1_bg.jpg');
+			imgArr.push('images/game1/tree_left.png');
 
-		// }else{
-		// 	imgArr.push('images/game1/game1_bg_r.jpg');
-		// 	imgArr.push('images/game1/tree_right.png');
-		// }
+		}else{
+			imgArr.push('images/game1/game1_bg_r.jpg');
+			imgArr.push('images/game1/tree_right.png');
+		}
 
 		bindExitSure();
 

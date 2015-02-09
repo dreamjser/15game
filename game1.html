@@ -11,7 +11,7 @@
 		<meta name="Description" content="">
 		<meta name="Keywords" content="腾讯游戏 纷享快乐 线上游乐场 游戏">
 		<title>我们15个理想生活养成记</title>
-		<link rel="stylesheet" href="css/game1.css?v=0.1.6">
+		<link rel="stylesheet" href="css/game1.css?v=0.1.8">
 		<script type="test/javascript" src="js/meta-device.js"></script>
 	</head>
 	<body>
@@ -42,6 +42,8 @@
 
 			</div>
 
+			<div id="tree_ani" class="pa tree-ani none"></div>
+
 			<div id="sun" class="pa game1-sun"></div>
 
 			<div class="pa game1-cloud"></div>
@@ -65,6 +67,24 @@
 
 		</div>
 
+		<!-- 中奖 -->
+		<div id="price" class="pa fullscreen game-price none">
+			
+			<div class="game-price-title"></div>
+
+			<div class="game-price-content">
+				
+					
+					<div class="pa game-price-icon"></div>
+					<div class="game-price-words"></div>
+					<div class="game-price-input">
+						<input id="price_qq" type="tel">
+					</div>
+					
+			</div>
+			<div id="price_submit" class="game-price-submit"></div>
+		</div>
+
 		<!-- 分享 -->
 		<div id="share" class="pa fullscreen game-share none">
 			
@@ -84,12 +104,12 @@
 
 				<div class="game-share-title pr">
 					
-					<span id="share_num" class="pa">3</span>
+					<span id="share_num" class="pa"></span>
 				</div>
 
 				<div class="game-share-score pr">
 
-					<span id="share_score" class="pa">87</span>
+					<span id="share_score" class="pa"></span>
 				</div>
 
 				<div class="game-share-words pr">

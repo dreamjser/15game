@@ -1,20 +1,25 @@
-
 define([], function() {
 
 	//序列帧动画
-	function Sprite(imgNode,config){
+	function Sprite(imgNode, config) {
 
 		this.img = imgNode;
 
 		this.url = config.url || [];
 
-		this.time = config.time || 50;
+		this.time = config.time || 200;
 
 		this.isOne = config.isOne || false;
 
-		this.result = config.result || function(){};
+		this.result = config.result || function() {};
 
-		this.count = this.url.length;
+		this.count = config.count || this.url.length;
+
+		this.width = config.width;
+
+		this.height = config.height;
+
+		this.lang = config.lang || 'y'; //x||y
 
 		this.num = 0;
 
@@ -22,54 +27,76 @@ define([], function() {
 
 	}
 
-	Sprite.prototype={
+	Sprite.prototype = {
 
-		init : function(){
+		init: function() {
 
-			this.auto = setInterval(this.bind(this,this.doSprite), this.time);
-			
+			this.num = 0;
+
+			this.distance = this.lang == 'y' ? this.height : this.width;
+
+			this.auto = setInterval(this.bind(this, this.doSprite), this.time);
+
 		},
 
-		doSprite : function(){
+		doSprite: function() {
 
-			if(this.num >=this.count){
+			if (this.num >= this.count) {
 
-				if(this.isOne){
+				if (this.isOne) {
 
 					clearInterval(this.auto);
 
 					this.result();
-					
+
 					return;
 				}
 
 				this.num = 0;
-				
+
 			}
 
-			this.img.src = this.url[this.num];
+			// console.log(this.num*this.distance);
+
+			this.img.style.backgroundPosition = this._getBgPosition(this.num*this.distance);
 
 			this.num++;
 		},
 
-		clearSprite : function(){
+		_getBgPosition: function(d) {
+
+			// console.log(d);
+
+			if (this.lang === 'x') {
+
+				return -d + "px 0";
+
+			} else {
+
+				return "0px " + (-d) + "px";
+
+			}
+
+		},
+
+		clearSprite: function() {
 
 			clearInterval(this.auto);
 		},
 
-		bind : function(obj, handler){
+		bind: function(obj, handler) {
 
-			return function(){
+			return function() {
 
-				return handler.apply(obj,arguments);
+				return handler.apply(obj, arguments);
 			}
 
 		}
 	}
 
-	return{
+	return {
 
-		Sprite : Sprite
+		Sprite: Sprite
 	}
 
 });

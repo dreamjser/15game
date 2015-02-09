@@ -8,7 +8,9 @@
         "zepto": 'lib/zepto',
         'io': 'lib/socket.io-1.3.2',
         'qrcode': 'lib/qrcode.min',
-        "public": 'module/public'
+        "public": 'module/public',
+        'load': 'module/load',
+        'sprite': 'module/sprite'
     },
     shim: {
 
@@ -26,8 +28,11 @@
     },
     modules: [{
         name: "index",
-        name: "game1",
-        name: "game2",
-        name: "game3"
+    },{
+        name:"game1",
+    },{
+        name:"game2",
+    },{
+        name:"game3"
     }]
 })

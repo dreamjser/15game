@@ -2,10 +2,11 @@ require.config({
 	baseUrl: 'js',
 	paths: {
 		"zepto": 'lib/zepto',
-		'io': 'lib/socket.io-1.3.2',
+		'io': 'lib/socket.io',
 		'qrcode': 'lib/qrcode.min',
 		"public": 'module/public',
-		'load': 'module/load'
+		'load': 'module/load',
+		'sprite': 'module/sprite'
 	},
 	shim: {
 
@@ -23,11 +24,12 @@ require.config({
 	}
 
 });
-require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub, load) {
+require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, qrcode, Pub, load, sprite) {
 
 	var delay = Pub.delay,
 		doAni = Pub.ani,
 		ImgLoader = load.ImgLoader,
+		Sprite = sprite.Sprite,
 		wrapper = $('#wrapper'),
 		loading = $('#loading'),
 		code = $('#code'),
@@ -38,10 +40,12 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		exit_sure = $('#exit_sure'),
 		restart = $('#restart'),
 		share_num = $('#share_num'),
+		share_score = $('#share_score'),
 		audio_success = $('#audio_success')[0],
 		audio_fail = $('#audio_fail')[0],
 		time_num = $('#time_num'),
 		tree_number = $('#tree_number'),
+		tree_ani = $('#tree_ani'),
 		code_box = $('#code_box'),
 		link_sure = $('#link_sure'),
 		time_num_box = $('#time_num_box'),
@@ -57,9 +61,38 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		sawY = 0;
 
 	var imgArr = [
-			'images/game1/game1_bg.jpg',
-			'images/public.png'
-		];
+		'images/game1/game1_bg.jpg',
+		'images/public.png'
+	];
+
+	var tree_sp = new Sprite(tree_ani[0], {
+
+		width: 197,
+		height: 299,
+		lang: 'x',
+		count: 3,
+		isOne: true,
+		url: 'images/game1/mx.png',
+		time: 100,
+		result: function() {
+			tree_ani.hide();
+		}
+	});
+
+	var tree_sp2 = new Sprite(tree_ani[0], {
+
+		width: 197,
+		height: 299,
+		lang: 'x',
+		count: 3,
+		isOne: true,
+		url: 'images/game1/mx2.png',
+		time: 100,
+		result: function() {
+			tree_ani.hide();
+		}
+	});
+
 
 	var CONFIG = {
 
@@ -69,18 +102,21 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		time: 10,
 
-		sawCount : 6,
+		sawCount: 4,
+
+		sawTimes : 60,
 
 		rightClass: 'bg-r',
 
 		sawLangClass: 'game-arrow-r',
 
-		linkClass : 'link-sure2'
+		linkClass: 'link-sure2'
 	};
 
 	var socket,
 		time_number = CONFIG.time,
 		tree_total_num = 0,
+		score_count = 0,
 		roomId = Pub.getUrlParam('chat'),
 		isLeft = false,
 		isTouch = true,
@@ -99,7 +135,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			this.beginTime();
 
-			restart.click(function(){
+			restart.click(function() {
 
 				socket.emit('replay');
 
@@ -135,10 +171,12 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 			share_num.html(tree_total_num);
 
+			share_score.html(getScores());
+
 			share.fadeIn('fast');
 		},
 
-		restartGame : function(){
+		restartGame: function() {
 
 			isEnd = false;
 			sawY = 0;
@@ -149,8 +187,12 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			time_num.html(3);
 			link_sure.removeClass(CONFIG.linkClass);
 			arrow.removeClass(CONFIG.sawLangClass);
-			$('.pie').css({'-webkit-transform':'rotate(0deg)'});
-			saw.css({'-webkit-transform' : 'translate3d(0,0,0)'});
+			$('.pie').css({
+				'-webkit-transform': 'rotate(0deg)'
+			});
+			saw.css({
+				'-webkit-transform': 'translate3d(0,0,0)'
+			});
 
 			share.hide();
 			showConnectSuccess();
@@ -203,32 +245,27 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 	}
 
 	//显示链接成功
-	function showConnectSuccess(){
+	function showConnectSuccess() {
 
 		code.hide();
 
 		link.show();
 
-		link_sure.click(function(){
+		link_sure.click(function() {
 
-			if($(this).hasClass(CONFIG.linkClass)){
+			socket.emit('confirm');
 
-				socket.emit('confirm');
+			$(this).addClass(CONFIG.linkClass);
 
-				$(this).unbind('click');
+			$(this).unbind('click');
 
-			}else{
-
-				$(this).addClass(CONFIG.linkClass);
-			}
-			
 		});
 
 	}
 
 	//开始游戏倒计时
 
-	function gameTimeBegin(){
+	function gameTimeBegin() {
 
 		link.hide();
 
@@ -238,9 +275,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		var t = 3,
 
-			autoTime = setInterval(function(){
+			autoTime = setInterval(function() {
 
-				if(t<=1){
+				if (t <= 1) {
 					time.hide();
 					clearInterval(autoTime);
 					Game.startGame();
@@ -251,8 +288,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 				time_num.html(t);
 
-				
-			},1000);
+
+			}, 1000);
 	}
 
 	//链接socket
@@ -274,9 +311,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			socket.on('swipeSucc', function(data) {
 				console.log("成功：" + data);
 
+				score_count = data;
+
 				audio_success.play();
 
-				tree_total_num = parseInt(data/CONFIG.sawCount);
+				tree_total_num = parseInt(data / CONFIG.sawCount);
 
 				changeSawLang();
 
@@ -291,22 +330,28 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			});
 
 			socket.on('confirm', function(data) {
-				
+
 				gameTimeBegin();
 			});
 
 			socket.on('exit', function(data) {
-				
+
 				console.log('exit');
 
 				exit.show();
 			});
 
 			socket.on('replay', function(data) {
-				
+
 				console.log('replay');
 
 				Game.restartGame();
+			});
+
+			socket.on('full', function(data) {
+
+				console.log('full');
+
 			});
 
 			// 游戏开始
@@ -322,7 +367,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			});
 
 			socket.on('gameover', function(data) {
-				
+
 				!isEnd && Game.gameOver();
 			});
 
@@ -339,7 +384,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		wrapper.swipeLeft(function() {
 
-			if(!isTouch || isTreeFade || isEnd){
+			if (!isTouch || isTreeFade || isEnd) {
 				return;
 			}
 
@@ -351,7 +396,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		wrapper.swipeRight(function() {
 
-			if(!isTouch || isTreeFade || isEnd){
+			if (!isTouch || isTreeFade || isEnd) {
 				return;
 			}
 
@@ -363,9 +408,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 	}
 
 	//绑定断开连接页面确定按钮
-	function bindExitSure(){
+	function bindExitSure() {
 
-		exit_sure.click(function(){
+		exit_sure.click(function() {
 
 			location.reload();
 		});
@@ -376,17 +421,33 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		var count = CONFIG.sawCount;
 
+		if (isLeft && data % 2 === 1) {
+			tree_ani.show();
+			tree_sp.init();
+		}
+		if (!isLeft && data % 2 === 0) {
+			tree_ani.show();
+			tree_sp2.init();
+		}
+
 		if (data % count === 0) {
+
 
 			isTreeFade = true;
 
-			tree_top.animate({translate3d : '0,-200px,0'}, CONFIG.duration,function(){
+			tree_top.animate({
+				translate3d: '0,-200px,0'
+			}, CONFIG.duration, function() {
 
-				tree_top.fadeOut(CONFIG.duration, function(){
+				tree_top.fadeOut(CONFIG.duration, function() {
 
-					tree_top.css({'-webkit-transform' : 'translate3d(0,0,0)'}).show();
-					saw.css({'-webkit-transform' : 'translate3d(0,0,0)'});
-					
+					tree_top.css({
+						'-webkit-transform': 'translate3d(0,0,0)'
+					}).show();
+					saw.css({
+						'-webkit-transform': 'translate3d(0,0,0)'
+					});
+
 					sawY = 0;
 					isTreeFade = false;
 				});
@@ -400,7 +461,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 	//锯木头成功后改变方向
 	function changeSawLang() {
 
-		if(isTreeFade){
+		if (isTreeFade) {
 			return;
 		}
 
@@ -431,6 +492,18 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		}, 'easeIn');
 	}
 
+	// 计算最后得分
+	function getScores() {
+
+		var scores = parseInt((100 / CONFIG.sawTimes) * score_count);
+
+		if (scores >= 100) {
+			scores = 99;
+		}
+
+		return scores;
+	}
+
 	//格式化数字
 	function formatInt(number) {
 
@@ -448,11 +521,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 	}
 
 	//loading
-	function loadImg(){
+	function loadImg() {
 
 		var imgLoader = new ImgLoader(imgArr);
 
-		imgLoader.completed(function(){
+		imgLoader.completed(function() {
 
 			isLoad = true;
 
@@ -465,21 +538,21 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 	}
 
 	//隐藏loading
-	function hideLoading(){
+	function hideLoading() {
 
-		if(!isLeft){
+		if (!isLeft) {
 
-			if(isLink && isLoad && !isLeft){
+			if (isLink && isLoad && !isLeft) {
 
 				loading.fadeOut('fast');
 
 			}
 
-		}else{
+		} else {
 
 			loading.fadeOut('fast');
 		}
-		
+
 	}
 
 	function init() {
@@ -488,14 +561,16 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		setRoomId();
 
-		if (!isLeft) {
+		if (isLeft) {
 
 			imgArr.push('images/game1/game1_bg.jpg');
 			imgArr.push('images/game1/tree_left.png');
+			imgArr.push('images/game1/mx.png');
 
-		}else{
+		} else {
 			imgArr.push('images/game1/game1_bg_r.jpg');
 			imgArr.push('images/game1/tree_right.png');
+			imgArr.push('images/game1/mx2.png');
 		}
 
 		bindExitSure();
@@ -505,7 +580,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 		bindTouchEvent();
 
 		forbTouchMove();
-		
+
 	}
 
 	init();
