@@ -460,6 +460,11 @@ body {
   background: url(../images/game1/game1.png) no-repeat;
   background-position: -8px -754px;
 }
+.game-code .code-title2 {
+  width: 387px;
+  height: 121px;
+  background: url(../images/game2/code_title.png) no-repeat;
+}
 .game-code .code-desc {
   width: 578px;
   margin: 0 auto 80px;
@@ -475,14 +480,20 @@ body {
   background: url(../images/game1/game1.png) no-repeat;
   background-position: 0px -158px;
 }
+.game-code .code-desc .code-desc-pic2 {
+  background: url(../images/game2/code_words.png) no-repeat;
+}
 .game-code .code-desc .code-icon {
   width: 132px;
   height: 134px;
   left: 50%;
   margin-left: -70px;
-  bottom: -66px;
+  bottom: -70px;
   background: url(../images/game1/game1.png) no-repeat;
   background-position: -606px -106px;
+}
+.game-code .code-desc .code-icon2 {
+  background: url(../images/game2/code_icon.png) no-repeat;
 }
 .game-code .code-pic {
   width: 232px;
@@ -602,29 +613,22 @@ body {
   width: 524px;
   height: 298px;
   background: url(../images/game1/game1.png) no-repeat;
-  background-position: 0 -298px;
+  background-position: 0 -300px;
 }
-.game-link .link-desc .ques-icon span {
-  padding-left: 40px;
-  background: url(../images/game1/game1_link_ques.png) no-repeat;
-}
-.game-link .link-desc ul {
-  margin-top: 50px;
-}
-.game-link .link-desc ul li {
-  list-style: disc;
-  margin-bottom: 30px;
-  line-height: 42px;
-}
-.game-link .link-desc ul li:last-child {
-  margin-bottom: 0;
+.game-link .link-desc .link-desc-pic2 {
+  width: 519px;
+  height: 317px;
+  background: url(../images/game2/link_words.png) no-repeat;
 }
 .game-link .link-sure {
-  width: 175px;
-  height: 84px;
+  width: 178px;
+  height: 88px;
   margin: 50px auto 0;
   background: url(../images/public.png) no-repeat;
-  background-position: -118px -12px;
+  background-position: -412.5px -197px;
+}
+.game-link .link-sure2 {
+  background-position: -118px -8px;
 }
 @-webkit-keyframes loading {
   0% {
@@ -711,4 +715,19 @@ body {
   .game-share .game-share-bottom div:last-child {
     margin-top: -10px;
   }
+}
+.wrapper .time-box {
+  width: 204px;
+  height: 123px;
+  left: 20px;
+  top: 20px;
+  z-index: 100;
+  color: #fff;
+  background: url(../images/public.png) no-repeat;
+  background-position: -310px -4px;
+}
+.wrapper .time-box .time-leave {
+  font-size: 104px;
+  letter-spacing: 26px;
+  margin-left: 22px;
 }

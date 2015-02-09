@@ -24,9 +24,9 @@ require(['zepto', 'public', 'load'], function($, Pub, load) {
 		read = $('#read'),
 		menu = $('.index-menu'),
 		read_btn = $('#read_btn'),
-		SPEED = 260,
-		ANI_time = 600,
-		EASEING = 'easeOut',
+		SPEED = 180,
+		ANI_time = 400,
+		EASEING = 'easeIn',
 		delay = Pub.delay,
 		doAni = Pub.ani,
 		ImgLoader = load.ImgLoader;

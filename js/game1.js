@@ -69,7 +69,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		time: 10,
 
-		sawCount : 4,
+		sawCount : 6,
 
 		rightClass: 'bg-r',
 
@@ -147,6 +147,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 			time_number = CONFIG.time;
 			time_leave.html(time_number);
 			time_num.html(3);
+			link_sure.removeClass(CONFIG.linkClass);
 			arrow.removeClass(CONFIG.sawLangClass);
 			$('.pie').css({'-webkit-transform':'rotate(0deg)'});
 			saw.css({'-webkit-transform' : 'translate3d(0,0,0)'});

@@ -61,7 +61,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		time: 20,
 
-		rightClass: 'bg-r'
+		rightClass: 'bg-r',
+
+		linkClass : 'link-sure2'
 
 	};
 
@@ -192,9 +194,17 @@ require(['zepto', 'io', 'qrcode', 'public', 'load'], function($, io, qrcode, Pub
 
 		link_sure.click(function(){
 
-			socket.emit('confirm');
+			if($(this).hasClass(CONFIG.linkClass)){
 
-			$(this).unbind('click');
+				socket.emit('confirm');
+
+				$(this).unbind('click');
+
+			}else{
+
+				$(this).addClass(CONFIG.linkClass);
+			}
+			
 		});
 
 	}
