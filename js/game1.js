@@ -292,10 +292,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 			}, 1000);
 	}
 
-	//链接socket
 	function connectSocket() {
 
-		socket = io.connect(IO_URL + roomId);
+		var transportsAry = !!window.WebSocket?["websocket"]:["polling"];
+
+		socket = io.connect(IO_URL + roomId,{"transports":transportsAry});
 
 		socket.on('connect', function() {
 			console.log("conected!!!");
