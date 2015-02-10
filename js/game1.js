@@ -3,10 +3,12 @@ require.config({
 	paths: {
 		"zepto": 'lib/zepto',
 		'io': 'lib/socket.io',
+		'wx':'lib/jweixin-1.0.0',
 		'qrcode': 'lib/qrcode.min',
 		"public": 'module/public',
 		'load': 'module/load',
-		'sprite': 'module/sprite'
+		'sprite': 'module/sprite',
+		'share': 'module/share'
 	},
 	shim: {
 
@@ -24,10 +26,9 @@ require.config({
 	}
 
 });
-require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, qrcode, Pub, load, sprite) {
+require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite','share'], function($, io, qrcode, Pub, load, sprite, share) {
 
 	var delay = Pub.delay,
-		doAni = Pub.ani,
 		ImgLoader = load.ImgLoader,
 		Sprite = sprite.Sprite,
 		wrapper = $('#wrapper'),
@@ -37,10 +38,20 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 		time = $('#time'),
 		share = $('#share'),
 		exit = $('#exit'),
+		plantform = $('#plantform'),
+		no_price = $('#no_price'),
 		exit_sure = $('#exit_sure'),
 		restart = $('#restart'),
+		game_price = $('#game_price'),
 		share_num = $('#share_num'),
 		share_score = $('#share_score'),
+		price_submit = $('#price_submit'),
+		share_tips = $('#share_tips'),
+		noprice_sure = $('#noprice_sure'),
+		myname = $('#myname'),
+		myhead = $('#myhead'),
+		oname = $('#oname'),
+		ohead = $('#ohead'),
 		audio_success = $('#audio_success')[0],
 		audio_fail = $('#audio_fail')[0],
 		time_num = $('#time_num'),
@@ -93,7 +104,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 		}
 	});
 
-
 	var CONFIG = {
 
 		duration: 800,
@@ -104,7 +114,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 
 		sawCount: 4,
 
-		sawTimes : 60,
+		sawTimes: 60,
 
 		rightClass: 'bg-r',
 
@@ -124,8 +134,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 		isEnd = false,
 		isLink = false,
 		isLoad = false,
+		isBeginTime = false,
 		// IO_URL = '192.168.1.133:7000/?chat=';
-		IO_URL = '116.213.76.9:7000/?chat=';
+		IO_URL = API.socketUrl;
 
 	var Game = {
 
@@ -173,12 +184,18 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 
 			share_score.html(getScores());
 
+			myname.html(userInfo.nickname);
+			oname.html(oUserInfo.nickname);
+			myhead.attr('src',userInfo.head);
+			ohead.attr('src',oUserInfo.head);
+
 			share.fadeIn('fast');
 		},
 
 		restartGame: function() {
 
 			isEnd = false;
+			isBeginTime = false;
 			sawY = 0;
 			tree_total_num = 0;
 			tree_number.html(0);
@@ -224,7 +241,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 	//设置房间id
 	function setRoomId() {
 
-		var c = encodeURI(new Date().getTime()),
+		var c = G_roomid,
 			href = location.href,
 			url = href.indexOf('?') > 0 ? href + '&chat=' + c : href + '?chat=' + c;
 
@@ -253,7 +270,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 
 		link_sure.click(function() {
 
-			socket.emit('confirm');
+			socket.emit('confirm',JSON.stringify(userInfo));
 
 			$(this).addClass(CONFIG.linkClass);
 
@@ -264,7 +281,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 	}
 
 	//开始游戏倒计时
-
 	function gameTimeBegin() {
 
 		link.hide();
@@ -272,7 +288,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 		time.show();
 
 		Pub.circleAni();
-
+		console.log(111);
 		var t = 3,
 
 			autoTime = setInterval(function() {
@@ -280,6 +296,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 				if (t <= 1) {
 					time.hide();
 					clearInterval(autoTime);
+
 					Game.startGame();
 					return;
 				}
@@ -294,9 +311,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 
 	function connectSocket() {
 
-		var transportsAry = !!window.WebSocket?["websocket"]:["polling"];
+		var transportsAry = !!window.WebSocket ? ["websocket"] : ["polling"];
 
-		socket = io.connect(IO_URL + roomId,{"transports":transportsAry});
+		socket = io.connect(IO_URL + roomId, {
+			"transports": transportsAry
+		});
 
 		socket.on('connect', function() {
 			console.log("conected!!!");
@@ -308,6 +327,12 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 			socket.on('disconnect', function() {
 				console.log("断开连接");
 			});
+
+			socket.on('userInfo',function(msg){
+		        console.log(msg);
+
+		        oUserInfo = $.parseJSON(msg);
+		    });
 
 			socket.on('swipeSucc', function(data) {
 				console.log("成功：" + data);
@@ -332,7 +357,13 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 
 			socket.on('confirm', function(data) {
 
-				gameTimeBegin();
+				if (!isBeginTime) {
+
+					gameTimeBegin();
+					isBeginTime = true;
+
+				}
+
 			});
 
 			socket.on('exit', function(data) {
@@ -472,12 +503,12 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 
 			arrow.removeClass(CONFIG.sawLangClass);
 
-			X = 120;
+			X = 70;
 		} else {
 
 			arrow.addClass(CONFIG.sawLangClass);
 
-			X = -120;
+			X = -70;
 		}
 
 		sawY += 8;
@@ -556,6 +587,73 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 
 	}
 
+	//提交中奖qq
+	function bindSubmitQQ(){
+
+		var flag = true,
+			reg = /\d+/;
+
+		price_submit.click(function(){
+
+			var qq = $('#price_qq').val();
+
+			if(!reg.test(qq)){
+
+				Pub.showTips("请输入正确的QQ号！");
+				return;
+			}
+
+			if(!flag){
+				return;
+			}
+
+			flag = false;
+
+			$.ajax({
+
+				url : api.submitPriceQQ,
+
+				data : {qq : qq},
+
+				success : function(d){
+
+					var data = typeof d === "string" ? $.parseJSON : d;
+
+					if(data.err === 0){
+
+						Pub.showTips("提交成功！", function(){
+
+							$('#price').fadeOut('fast');
+						});
+
+					}else{
+
+						Pub.showTips(data.msg);
+					}
+
+					flag = true;
+				}
+
+			});
+		});
+
+		game_price.click(function(){
+
+			share_tips.fadeIn('fast');
+		});
+
+		noprice_sure.click(function(){
+
+			no_price.fadeOut('fast');
+		});
+
+		plantform.click(function(){
+
+
+		});
+	}
+
+
 	function init() {
 
 		time_leave.html(CONFIG.time);
@@ -577,6 +675,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite'], function($, io, q
 		bindExitSure();
 
 		loadImg();
+
+		bindSubmitQQ();
 
 		bindTouchEvent();
 

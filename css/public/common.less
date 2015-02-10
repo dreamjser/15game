@@ -18,6 +18,8 @@ body{
 
 @borderColor: #9c9c9c;
 
+.pub-tips{ position: fixed; padding: 5px 15px; background: rgba(0,0,0,0.6); border-radius: 5px; color: #fff; font-size: 40px; z-index: 9999;}
+
 .public-bg{
 
 	background: url(../images/public.png) no-repeat;
@@ -88,6 +90,85 @@ body{
 				-webkit-animation:loading2 2s linear infinite;
 			}
 		}
+	}
+}
+
+.game-share-tips{
+
+	.game-mask;
+
+	left: 0;
+	top: 0;
+	z-index: 1222;
+
+	.game-share-tipspic{
+		
+		position: absolute;
+		width: 583px;
+		height: 173px;
+		right: 40px;
+		top: 0;
+		.public-bg;
+		background-position: 0 -868px;
+	}
+}
+
+.game-noprice{
+
+	.game-mask;
+
+	left: 0;
+	top: 0;
+	z-index: 2222;
+
+	.game-noprice-title{
+
+		width: 626px;
+		height: 76px;
+		margin: 280px auto 90px;
+		.public-bg;
+		background-position: 0 -1096px;
+
+	}
+
+	.game-noprice-content{
+		
+		width: 622px;
+		position: relative;
+		margin: 0 auto;
+		padding: 80px 0 40px;
+		border-top: 1px @borderColor solid;
+		border-bottom: 1px @borderColor solid;
+
+		.game-noprice-icon{
+
+			width: 132px;
+			height: 134px;
+			left: 245px;
+			top: -60px;
+			.public-bg;
+			background-position: -622px -890px;
+			
+		}
+
+		.game-noprice-words{
+
+			width: 505px;
+			height: 31px;
+			margin: 0 auto 30px;
+			.public-bg;
+			background-position: 0px -1050px;
+		}
+
+	}
+
+	.game-noprice-sure{
+
+		width: 178px;
+		height: 86px;
+		margin: 80px auto 0;
+		.public-bg;
+		background-position: -412px -202px;
 	}
 }
 
@@ -285,7 +366,7 @@ body{
 
 		.game-share-title{
 
-			width: 450px;
+			width: 500px;
 			height: 42px;
 			margin: 0 auto;
 			.game1-bg;
@@ -296,13 +377,16 @@ body{
 				font-weight: bold;
 				right: 40px;
 				top: -36px;
+				display: block;
+				width: 100px;
+				text-align: center;
 			}
 		}
 
 		.game-share-score{
 
-			width: 382px;
-			height: 78px;
+			width: 390px;
+			height: 84px;
 			margin: 55px auto 90px;
 			.public-bg;
 			background-position: 0 -206px;
@@ -313,6 +397,9 @@ body{
 				font-weight: bold;
 				right: 25px;
 				top: -25px;
+				display: block;
+				width: 100px;
+				text-align: center;
 			}
 		}
 
@@ -365,12 +452,20 @@ body{
 		
 		}
 
+		.game-plantform{
+
+			width: 290px;
+			height: 104px;
+			.public-bg;
+			background-position: 0 -594px;
+		}
+
 		.game-detail{
 
-			width: 700px;
-			height: 108px;
+			width: 400px;
+			height: 104px;
 			.public-bg;
-			background-position: 0 -590px;
+			background-position: -299px -594px;
 		}
 	}
 }
@@ -652,7 +747,99 @@ body{
 	
 }
 
+//iphone 5 6
+@media only screen and (device-width:320px) and (device-height:568px) {
+	
+	.game-share{
+		
+		.game-share-top{
 
+			height: 900px;
+			margin: 20px auto 30px;
+
+			.game-share-head{
+				margin: 20px auto 30px;
+			}
+
+			.game-share-score{
+				margin: 60px auto 90px;
+			}
+		}
+
+		.game-share-bottom{
+
+			div{
+				&:last-child{
+					margin-top: 0px;
+				}
+			}
+		}
+	}
+	
+}
+
+@media only screen and (device-width:375px) and (device-height:667px) {
+	
+	.game-share{
+		
+		.game-share-top{
+
+			height: 900px;
+			margin: 20px auto 30px;
+
+			.game-share-head{
+				margin: 20px auto 30px;
+			}
+
+			.game-share-score{
+				margin: 60px auto 90px;
+			}
+		}
+
+		.game-share-bottom{
+
+			div{
+				&:last-child{
+					margin-top: 0px;
+				}
+			}
+		}
+	}
+	
+}
+
+//魅族mx2chrome
+@media only screen and (device-width:400px) and (device-height:640px) {
+	
+	.game-share{
+		
+		.game-share-top{
+
+			height: 720px;
+			margin: 10px auto;
+
+			.game-share-head{
+				margin: -10px auto 10px;
+			}
+
+			.game-share-score{
+				margin: 30px auto 70px;
+			}
+		}
+
+		.game-share-bottom{
+
+			div{
+				&:last-child{
+					margin-top: -10px;
+				}
+			}
+		}
+	}
+	
+}
+
+//魅族mx2微信
 @media only screen and (device-width:800px) and (device-height:1280px) {
 	
 	.game-share{

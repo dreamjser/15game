@@ -2,15 +2,18 @@
     appDir: "./",
     baseUrl: "js",
     dir: "../15game_min",
-    fileExclusionRegExp: /^(r|build)\.js$/,
+    fileExclusionRegExp: /r.js|build.js|\w.less/,
     optimizeCss: 'standard',
     paths: {
         "zepto": 'lib/zepto',
-        'io': 'lib/socket.io-1.3.2',
+        'io': 'lib/socket.io',
+        'wx':'lib/jweixin-1.0.0',
         'qrcode': 'lib/qrcode.min',
         "public": 'module/public',
         'load': 'module/load',
-        'sprite': 'module/sprite'
+        'sprite': 'module/sprite',
+        'share': 'module/share',
+        'api':'module/api'
     },
     shim: {
 

@@ -1,9 +1,10 @@
 define(['zepto'], function() {
 
 	var SPEED = 400,
-		EASING = 'easeIn';
+		EASING = 'easeIn',
+		ani = false;
 
-	function ani(node, css, next, nextTime) {
+	function doAni(node, css, next, nextTime) {
 
 		next = next || function() {};
 		nextTime = nextTime || 0;
@@ -13,6 +14,7 @@ define(['zepto'], function() {
 			opacity: 1
 
 		}, SPEED, EASING);
+
 
 		nextTime && delay(next, nextTime);
 	}
@@ -55,6 +57,41 @@ define(['zepto'], function() {
 
 	}
 
+	function showTips(tips, result){
+
+		var div=document.createElement('div'),
+			winW=$(window).width(),
+			winH=$(window).height();
+
+		if(ani){
+			return;
+		}
+
+		div.className="pub-tips";
+		div.innerHTML=tips;
+
+		$('body').append($(div));
+
+		$(div).css({left:(winW-$(div).width())/2,top:winH});
+
+		
+
+		ani = true;
+
+		$(div).animate({'translate3d':'0,-200px,0'},'ease-out',500,function(){
+
+			setTimeout(function(){
+
+				$(div).remove();
+				ani = false;
+
+				result && result();
+
+			},500);
+
+		});
+	}
+
 	function delay(result, time) {
 
 		setTimeout(result, time);
@@ -78,11 +115,13 @@ define(['zepto'], function() {
 
 		delay: delay,
 
-		ani: ani,
+		ani: doAni,
 
 		getUrlParam: getUrlParam,
 
-		circleAni: circleAni
+		circleAni: circleAni,
+
+		showTips : showTips
 	}
 
 });

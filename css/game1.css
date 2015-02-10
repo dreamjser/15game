@@ -229,6 +229,15 @@ body {
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   -webkit-user-select: none;
 }
+.pub-tips {
+  position: fixed;
+  padding: 5px 15px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  color: #fff;
+  font-size: 40px;
+  z-index: 9999;
+}
 .public-bg {
   background: url(../images/public.png) no-repeat;
 }
@@ -285,6 +294,66 @@ body {
   background-position: 0 -160px;
   z-index: 5;
   -webkit-animation: loading2 2s linear infinite;
+}
+.game-share-tips {
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 999;
+  left: 0;
+  top: 0;
+  z-index: 1222;
+}
+.game-share-tips .game-share-tipspic {
+  position: absolute;
+  width: 583px;
+  height: 173px;
+  right: 40px;
+  top: 0;
+  background: url(../images/public.png) no-repeat;
+  background-position: 0 -868px;
+}
+.game-noprice {
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 999;
+  left: 0;
+  top: 0;
+  z-index: 2222;
+}
+.game-noprice .game-noprice-title {
+  width: 626px;
+  height: 76px;
+  margin: 280px auto 90px;
+  background: url(../images/public.png) no-repeat;
+  background-position: 0 -1096px;
+}
+.game-noprice .game-noprice-content {
+  width: 622px;
+  position: relative;
+  margin: 0 auto;
+  padding: 80px 0 40px;
+  border-top: 1px #9c9c9c solid;
+  border-bottom: 1px #9c9c9c solid;
+}
+.game-noprice .game-noprice-content .game-noprice-icon {
+  width: 132px;
+  height: 134px;
+  left: 245px;
+  top: -60px;
+  background: url(../images/public.png) no-repeat;
+  background-position: -622px -890px;
+}
+.game-noprice .game-noprice-content .game-noprice-words {
+  width: 505px;
+  height: 31px;
+  margin: 0 auto 30px;
+  background: url(../images/public.png) no-repeat;
+  background-position: 0px -1050px;
+}
+.game-noprice .game-noprice-sure {
+  width: 178px;
+  height: 86px;
+  margin: 80px auto 0;
+  background: url(../images/public.png) no-repeat;
+  background-position: -412px -202px;
 }
 .game-price {
   background: rgba(0, 0, 0, 0.88);
@@ -436,7 +505,7 @@ body {
   color: #606060;
 }
 .game-share .game-share-top .game-share-title {
-  width: 450px;
+  width: 500px;
   height: 42px;
   margin: 0 auto;
   background: url(../images/game1/game1.png) no-repeat;
@@ -448,10 +517,13 @@ body {
   font-weight: bold;
   right: 40px;
   top: -36px;
+  display: block;
+  width: 100px;
+  text-align: center;
 }
 .game-share .game-share-top .game-share-score {
-  width: 382px;
-  height: 78px;
+  width: 390px;
+  height: 84px;
   margin: 55px auto 90px;
   background: url(../images/public.png) no-repeat;
   background-position: 0 -206px;
@@ -462,6 +534,9 @@ body {
   font-weight: bold;
   right: 25px;
   top: -25px;
+  display: block;
+  width: 100px;
+  text-align: center;
 }
 .game-share .game-share-top .game-share-words {
   width: 573px;
@@ -501,11 +576,17 @@ body {
   background: url(../images/public.png) no-repeat;
   background-position: -306px -696px;
 }
-.game-share .game-share-bottom .game-detail {
-  width: 700px;
-  height: 108px;
+.game-share .game-share-bottom .game-plantform {
+  width: 290px;
+  height: 104px;
   background: url(../images/public.png) no-repeat;
-  background-position: 0 -590px;
+  background-position: 0 -594px;
+}
+.game-share .game-share-bottom .game-detail {
+  width: 400px;
+  height: 104px;
+  background: url(../images/public.png) no-repeat;
+  background-position: -299px -594px;
 }
 .game-code {
   left: 0;
@@ -747,6 +828,51 @@ body {
   }
 }
 @media only screen and (max-device-height: 480px) {
+  .game-share .game-share-top {
+    height: 720px;
+    margin: 10px auto;
+  }
+  .game-share .game-share-top .game-share-head {
+    margin: -10px auto 10px;
+  }
+  .game-share .game-share-top .game-share-score {
+    margin: 30px auto 70px;
+  }
+  .game-share .game-share-bottom div:last-child {
+    margin-top: -10px;
+  }
+}
+@media only screen and (device-width: 320px) and (device-height: 568px) {
+  .game-share .game-share-top {
+    height: 900px;
+    margin: 20px auto 30px;
+  }
+  .game-share .game-share-top .game-share-head {
+    margin: 20px auto 30px;
+  }
+  .game-share .game-share-top .game-share-score {
+    margin: 60px auto 90px;
+  }
+  .game-share .game-share-bottom div:last-child {
+    margin-top: 0px;
+  }
+}
+@media only screen and (device-width: 375px) and (device-height: 667px) {
+  .game-share .game-share-top {
+    height: 900px;
+    margin: 20px auto 30px;
+  }
+  .game-share .game-share-top .game-share-head {
+    margin: 20px auto 30px;
+  }
+  .game-share .game-share-top .game-share-score {
+    margin: 60px auto 90px;
+  }
+  .game-share .game-share-bottom div:last-child {
+    margin-top: 0px;
+  }
+}
+@media only screen and (device-width: 400px) and (device-height: 640px) {
   .game-share .game-share-top {
     height: 720px;
     margin: 10px auto;
