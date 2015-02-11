@@ -1,13 +1,10 @@
 define(['zepto','wx'], function($, wx) {
 
 	var _ = this,
-		href = document.location.href,
-		path = href.substr(0, href.lastIndexOf('/')),
-		src = path + '/images/share.jpg',
 		imgUrl = Share.imgUrl,
-		lineLink = href,
-		descContent = Share.title,
-		shareTitle = Share.content;
+		lineLink = Share.href,
+		descContent = Share.content1,
+		shareTitle = Share.title;
 
 	wx.config({
 		appId: '',
@@ -18,7 +15,6 @@ define(['zepto','wx'], function($, wx) {
 			'onMenuShareQQ',
 			'onMenuShareWeibo',
 			'checkJsApi'
-			// 所有要调用的 API 都要加到这个列表中
 		]
 	});
 
@@ -50,100 +46,111 @@ define(['zepto','wx'], function($, wx) {
 		});	
 	}
 
-	// getPrice();
-	
-	wx.ready(function () {
-		// 在这里调用 API
+	// 在这里调用 API
+	function share(config){
 
-		wx.onMenuShareAppMessage({
-			title: shareTitle,
-			desc: descContent,
-			link: lineLink,
-			imgUrl: imgUrl,
-			trigger: function (res) {
-				// alert('用户点击发送给朋友');
-			},
-			success: function (res) {
-				
-				getPrice();
-			},
-			cancel: function (res) {
-				// alert('已取消');
-			},
-			fail: function (res) {
-				alert(JSON.stringify(res));
-			}
+		config = config || {};
+
+		var title = config.title || shareTitle,
+			content = config.content || descContent,
+			href = config.href || lineLink,
+			imgSrc = config.imgUrl || imgUrl;
+
+		console.log(title+"--"+content+"--"+href+"--"+imgSrc);
+
+		wx.ready(function () {
+
+			wx.onMenuShareAppMessage({
+				title: title,
+				desc: content,
+				link: href,
+				imgUrl: imgSrc,
+				trigger: function (res) {
+					// alert('用户点击发送给朋友');
+				},
+				success: function (res) {
+					console.log("分享成功！");
+					getPrice();
+				},
+				cancel: function (res) {
+					// alert('已取消');
+				},
+				fail: function (res) {
+					alert(JSON.stringify(res));
+				}
+			});
+
+
+			wx.onMenuShareTimeline({
+				title: title,
+				link: href,
+				imgUrl: imgSrc,
+				trigger: function (res) {
+					// alert('用户点击分享到朋友圈');
+				},
+				success: function (res) {
+					console.log("分享朋友圈成功！");
+					getPrice()
+				},
+				cancel: function (res) {
+					// alert('已取消');
+				},
+				fail: function (res) {
+					alert(JSON.stringify(res));
+				}
+			});
+
+			/*wx.onMenuShareQQ({
+				title: title,
+				desc: content,
+				link: href,
+				imgUrl: imgSrc,
+				trigger: function (res) {
+					// alert('用户点击分享到QQ');
+				},
+				complete: function (res) {
+					// alert(JSON.stringify(res));
+				},
+				success: function (res) {
+					// alert('已分享');
+				},
+				cancel: function (res) {
+					// alert('已取消');
+				},
+				fail: function (res) {
+					alert(JSON.stringify(res));
+				}
+			});
+
+
+
+			wx.onMenuShareWeibo({
+				title: title,
+				desc: content,
+				link: href,
+				imgUrl: imgSrc,
+				trigger: function (res) {
+					// alert('用户点击分享到微博');
+				},
+				complete: function (res) {
+					// alert(JSON.stringify(res));
+				},
+				success: function (res) {
+					// alert('已分享');
+				},
+				cancel: function (res) {
+					// alert('已取消');
+				},
+				fail: function (res) {
+					alert(JSON.stringify(res));
+				}
+			});*/
 		});
 
-
-		wx.onMenuShareTimeline({
-			title: shareTitle,
-			link: lineLink,
-			imgUrl: imgUrl,
-			trigger: function (res) {
-				// alert('用户点击分享到朋友圈');
-			},
-			success: function (res) {
-				
-				getPrice()
-			},
-			cancel: function (res) {
-				// alert('已取消');
-			},
-			fail: function (res) {
-				alert(JSON.stringify(res));
-			}
-		});
-
-		/*wx.onMenuShareQQ({
-			title: shareTitle,
-			desc: descContent,
-			link: lineLink,
-			imgUrl: imgUrl,
-			trigger: function (res) {
-				// alert('用户点击分享到QQ');
-			},
-			complete: function (res) {
-				// alert(JSON.stringify(res));
-			},
-			success: function (res) {
-				// alert('已分享');
-			},
-			cancel: function (res) {
-				// alert('已取消');
-			},
-			fail: function (res) {
-				alert(JSON.stringify(res));
-			}
-		});
-
-
-
-		wx.onMenuShareWeibo({
-			title: shareTitle,
-			desc: descContent,
-			link: lineLink,
-			imgUrl: imgUrl,
-			trigger: function (res) {
-				// alert('用户点击分享到微博');
-			},
-			complete: function (res) {
-				// alert(JSON.stringify(res));
-			},
-			success: function (res) {
-				// alert('已分享');
-			},
-			cancel: function (res) {
-				// alert('已取消');
-			},
-			fail: function (res) {
-				alert(JSON.stringify(res));
-			}
-		});*/
-
-	});
+	}
 
 	return{
 
+		share : share
 	}
 });

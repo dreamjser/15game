@@ -26,10 +26,13 @@
 	// 分享配置
 	var Share = {};
 
-	Share.imgUrl = '';
-	Share.title = '创造精彩人生，你需要一个“锯”有默契的伙伴！';
-	Share.content = '我们15个理想生活养成记';
-
+	Share.imgUrl = 'http://15.qq.com/images/share.jpg';
+	Share.href = 'http://15.qq.com';
+	Share.title = '我们15个理想生活养成记';
+	//锯木头分享内容
+	Share.content1 = '创造精彩人生，你需要一个“锯”有默契的伙伴！';
+	//水桶分享内容
+	Share.content3 = '路途艰辛，你们只能“桶”一步调，坚韧前行！';
 
 	window.API = API;
 	window.Share = Share;

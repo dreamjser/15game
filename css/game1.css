@@ -420,7 +420,7 @@ body {
   z-index: 999;
   left: 0;
   top: 0;
-  z-index: 1111;
+  z-index: 9000;
 }
 .game-exit .game-exit-title {
   width: 296px;

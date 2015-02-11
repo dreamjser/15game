@@ -26,11 +26,12 @@ require.config({
 	}
 
 });
-require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite','share'], function($, io, qrcode, Pub, load, sprite, share) {
+require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite','share'], function($, io, qrcode, Pub, load, sprite, sh) {
 
 	var delay = Pub.delay,
 		ImgLoader = load.ImgLoader,
 		Sprite = sprite.Sprite,
+		pubShare = sh.share,
 		wrapper = $('#wrapper'),
 		loading = $('#loading'),
 		code = $('#code'),
@@ -70,7 +71,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite','share'], function(
 		saw = $('#saw'),
 		tree_top = $('#tree_top'),
 		sawY = 0;
-
+	
 	var imgArr = [
 		'images/game1/game1_bg.jpg',
 		'images/public.png'
@@ -146,6 +147,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite','share'], function(
 
 			this.beginTime();
 
+			pubShare({
+
+				content : Share.content1
+			});
+
 			restart.click(function() {
 
 				socket.emit('replay');
@@ -179,6 +185,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite','share'], function(
 		gameOver: function() {
 
 			isEnd = true;
+
+			pubShare({
+
+				content : '你得了'+getScores()+'分'
+			});
 
 			share_num.html(tree_total_num);
 
@@ -444,7 +455,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite','share'], function(
 
 		exit_sure.click(function() {
 
-			location.reload();
+			location.href = 'game1.html';
 		});
 	}
 
@@ -657,6 +668,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite','share'], function(
 	function init() {
 
 		time_leave.html(CONFIG.time);
+
+		pubShare({
+
+			content : Share.content1
+		});
 
 		setRoomId();
 
