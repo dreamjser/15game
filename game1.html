@@ -2,6 +2,7 @@
 <html lang="zh-CN">
     <head>
 		<meta charset="utf-8">
+		<base href="http://1251063774.cdn.myqcloud.com/1251063774/game/">
 		<meta name="author" content="Tencent-CP">
 		<meta name="Copyright" content="Tencent" />
 		<meta name="format-detection" content="telephone=no">
@@ -11,7 +12,7 @@
 		<meta name="Description" content="">
 		<meta name="Keywords" content="腾讯游戏 纷享快乐 线上游乐场 游戏">
 		<title>我们15个理想生活养成记</title>
-		<link rel="stylesheet" href="css/game1.css?v=0.1.8">
+		<link rel="stylesheet" href="css/game1.css?v=0.1.3">
 		<script type="test/javascript" src="js/meta-device.js"></script>
 	</head>
 	<body>
@@ -49,6 +50,31 @@
 			<div class="pa game1-cloud"></div>
 
 			<div class="pa game1-cloud"></div>
+		</div>
+
+		<!-- 房间已满 -->
+		<div id="full" class="pa fullscreen game-full none">
+			
+			<div class="game-full-title"></div>
+
+			<div class="game-full-icon"></div>
+
+			<div class="game-full-content">
+				<div class="game-full-words"></div>
+			</div>
+
+			<div id="full_sure" class="game-full-sure"></div>
+		</div>
+		
+		<!-- 关注公众号 -->
+		<div id="pubcode" class="pa fullscreen game-pubcode none">
+			
+			<div class="game-pubcode-pic"><img src="images/public_code.jpg" alt=""></div>
+
+			<div class="game-pubcode-content">
+				<p>长按此二维码选择“识别图中二维码”即可添加</p>
+				<p>微信号：women15ge</p>
+			</div>
 		</div>
 
 		<!-- 分享提示 -->
@@ -90,7 +116,7 @@
 			<div id="price_submit" class="game-price-submit"></div>
 		</div>
 
-		<!-- 中奖 -->
+		<!-- 没中奖 -->
 		<div id="no_price" class="pa fullscreen game-noprice none">
 			
 			<div class="game-noprice-title"></div>
@@ -111,12 +137,12 @@
 
 				<div class="game-share-head pr">
 					<div class="pa">
-						<img id="myhead" src="images/game1/head.jpg" alt="">
+						<div><img id="myhead" src="images/game1/head.jpg" alt=""></div>
 						<p id="myname" class="tc">meng</p>
 					</div>
 					<div class="pa plus">+</div>
 					<div class="pa">
-						<img id="ohead" src="images/game1/head.jpg" alt="">
+						<div><img id="ohead" src="images/game1/head.jpg" alt=""></div>
 						<p id="oname" class="tc">qi</p>
 					</div>
 				</div>
@@ -219,16 +245,20 @@
 
 		<script type="text/javascript">
 
-			var userInfo={head:"images/game1/head.jpg",nickname:"蒙奇·D·路飞"};
+			// 本人信息
+			var userInfo={head:"",nickname:"蒙奇·D·路飞"};
 
+			var socketUrl = '116.213.76.9:7000/?chat=';
+
+			// 房间id
 			var G_roomid = new Date().getTime();
 
 			var oUserInfo = null;
 
-		    // var require = {
+		    var require = {
 		
-		    //      urlArgs: 't='+new Date().getTime()
-		    // };
+		         urlArgs: 'v=0.1.3'
+		    };
 		
 		</script>
 

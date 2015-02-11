@@ -93,6 +93,61 @@ body{
 	}
 }
 
+.game-full{
+
+	.game-mask;
+
+	left: 0;
+	top: 0;
+	z-index: 1222;
+
+	.game-full-title{
+		
+		width: 291px;
+		height: 74px;
+		margin: 120px auto 15px;
+		.public-bg;
+		background-position: 0 -1280px;
+	}
+
+	.game-full-icon{
+
+		width: 106px;
+		height: 110px;
+		margin: 0 auto;
+		.public-bg;
+		background-position: -692px -402px;
+	}
+
+	.game-full-content{
+		
+		width: 510px;
+		margin: 40px auto;
+		border-top: 1px @borderColor solid;
+		border-bottom: 1px @borderColor solid;
+		padding: 50px 0;
+
+		.game-full-words{
+			
+			width: 427px;
+			height: 31px;
+			margin: 0 auto;
+			.public-bg;
+			background-position: 0px -1240px;
+		}
+
+	}
+
+	.game-full-sure{
+			
+		width: 178px;
+		height: 86px;
+		margin: 60px auto 0;
+		.public-bg;
+		background-position: -412px -202px;
+	}
+}
+
 .game-share-tips{
 
 	.game-mask;
@@ -303,6 +358,44 @@ body{
 	}
 }
 
+.game-pubcode{
+
+	.game-mask;
+	left: 0;
+	top: 0;
+	z-index: 2222;
+	.game-pubcode-pic{
+
+		width: 389px;
+		height: 389px;
+		margin: 280px auto 60px;
+		img{
+
+			width: 389px;
+			height: 389px;
+			display: block;
+		}
+	}
+	.game-pubcode-content{
+
+		border-top: 1px @borderColor solid;
+		
+		padding-top: 45px;
+		margin:  0 auto;
+		width: 528px;
+
+		p{
+			width: 750px;
+			text-align: center;
+			font-size: 32px;
+			color: #fff;
+			margin-left: -110px;
+			line-height: 40px;
+		}
+
+	}
+}
+
 .game-share{
 
 	@readColor:#9e1818;
@@ -336,12 +429,23 @@ body{
 				top: 30px;
 				left: 0;
 
-				img{
-					width: 172px;
-					height: 172px;
+				div{
+					
+					width: 180px;
+					height: 180px;
+					background: red;
 					border-radius: 50%;
-					border:4px red solid;
+					overflow: hidden;
+					img{
+						width: 172px;
+						height: 172px;
+						border-radius: 50%;
+						margin: 4px;
+						display: block;
+					}
 				}
+
+				
 				p{
 					font-size: 30px;
 					margin-top: 20px;

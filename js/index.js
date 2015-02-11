@@ -2,20 +2,31 @@ require.config({
 	baseUrl: 'js',
 	paths: {
 		"zepto": 'lib/zepto',
+		'io': 'lib/socket.io',
+		'wx': 'lib/jweixin-1.0.0',
+		'qrcode': 'lib/qrcode.min',
 		"public": 'module/public',
 		'load': 'module/load',
-		"sprite": 'module/sprite'
+		'sprite': 'module/sprite',
+		'share': 'module/share'
 	},
 	shim: {
 
 		'zepto': {
 
 			exports: 'Zepto'
+		},
+		'io': {
+			exports: 'io'
+		},
+		'qrcode': {
+
+			exports: 'QRCode'
 		}
 	}
 
 });
-require(['zepto', 'public', 'load', 'sprite'], function($, Pub, load, sprite) {
+require(['zepto', 'public', 'load', 'sprite', 'share'], function($, Pub, load, sprite, sh) {
 
 	var logo = $('#logo'),
 		slogan = $('#slogan'),
@@ -27,6 +38,9 @@ require(['zepto', 'public', 'load', 'sprite'], function($, Pub, load, sprite) {
 		cloud3 = $('#cloud3'),
 		menu = $('.index-menu'),
 		read_btn = $('#read_btn'),
+		return_btn = $('#return_btn'),
+		online = $('#online'),
+		pub_share = sh.share,
 		truck = $('#truck'),
 		SPEED = 300,
 		ANI_time = 500,
@@ -46,12 +60,7 @@ require(['zepto', 'public', 'load', 'sprite'], function($, Pub, load, sprite) {
 
 	});
 
-	var imgArr = [
-
-		'images/index/index_bg.jpg',
-		'images/index/index_all.png',
-		'images/index/truck.png'
-	];
+	var imgArr = ImgArr.arr;
 
 	function bindClose() {
 
@@ -64,6 +73,21 @@ require(['zepto', 'public', 'load', 'sprite'], function($, Pub, load, sprite) {
 
 			read.fadeIn('fast');
 		});
+
+		$('.index-menu').click(function(){
+
+			if($(this).data('online') === 'none'){
+
+				online.fadeIn('fast');
+				return false;
+			}
+			
+		});
+
+		return_btn.click(function() {
+
+			online.fadeOut('fast');
+		});
 	}
 
 	function init() {
@@ -71,6 +95,7 @@ require(['zepto', 'public', 'load', 'sprite'], function($, Pub, load, sprite) {
 		$('#loading').fadeOut('fast');
 
 		bindClose();
+
 
 		var sloganCss = {
 			'-webkit-transform': 'scale(0)',
@@ -145,22 +170,23 @@ require(['zepto', 'public', 'load', 'sprite'], function($, Pub, load, sprite) {
 
 													$('.index-cloud2,.index-cloud1').addClass('index-animation');
 
+
+												},SPEED);
+
+												delay(function(){
+										
+													read_btn.fadeIn('fast');
+
+													truck.fadeIn('fast',function(){
+														
+														Sp.init();
+													});
+
 												},SPEED);
 												
 											},SPEED);
 
 										},SPEED);
-
-									},SPEED);
-
-									delay(function(){
-										
-										read_btn.fadeIn('fast');
-
-										truck.fadeIn('fast',function(){
-											
-											Sp.init();
-										});
 
 									},SPEED);
 
@@ -187,5 +213,10 @@ require(['zepto', 'public', 'load', 'sprite'], function($, Pub, load, sprite) {
 	imgLoader.completed(init);
 
 	imgLoader.start();
+
+	pub_share({
+
+		content : Share.content
+	});
 
 });

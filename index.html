@@ -2,6 +2,7 @@
 <html lang="zh-CN">
     <head>
 		<meta charset="utf-8">
+		<base href="http://1251063774.cdn.myqcloud.com/1251063774/game/">
 		<meta name="author" content="Tencent-CP">
 		<meta name="Copyright" content="Tencent" />
 		<meta name="format-detection" content="telephone=no">
@@ -24,11 +25,12 @@
 
 			<div id="title" class="pa index-title none"></div>
 
-			<a class="pa index-menu none" href="game1.html"></a>
+			<!-- <a class="pa index-menu none" href="game1.html"></a> -->
+			<a class="pa index-menu none" href="http://15.qq.com/game/jumutou"></a>
 
-			<a class="pa index-menu index-menu2 none" href="game2.html"></a>
+			<a class="pa index-menu index-menu2 none" data-online="none" href="game2.html"></a>
 
-			<a class="pa index-menu index-menu3 none" href="game3.html"></a>
+			<a class="pa index-menu index-menu3 none" data-online="none"  href="game3.html"></a>
 
 			<div id="truck" class="pa index-truck none"></div>
 
@@ -42,6 +44,18 @@
 
 			<div id="read_btn" class="pa index-read-btn none"></div>
 
+		</div>
+
+		<div id="online" class="pa fullscreen index-online none">
+			
+			<div class="index-online-icon"></div>
+
+			<div class="index-online-content">
+				
+				<div class="index-online-title"></div>
+
+				<div id="return_btn" class="index-online-return"></div>
+			</div>
 		</div>
 
 		<div id="read" class="pa fullscreen index-read none">
@@ -67,7 +81,7 @@
 		    // };
 		
 		</script>
-
+		<script type="text/javascript" src="js/config.js" charset="UTF-8"></script>
 		<script type="text/javascript" src="js/lib/require.js" data-main="js/index" defer async></script>
 		<script type="text/javascript" src="http://tajs.qq.com/stats?sId=39146770" charset="UTF-8"></script>
 	</body>

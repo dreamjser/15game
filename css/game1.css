@@ -295,6 +295,48 @@ body {
   z-index: 5;
   -webkit-animation: loading2 2s linear infinite;
 }
+.game-full {
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 999;
+  left: 0;
+  top: 0;
+  z-index: 1222;
+}
+.game-full .game-full-title {
+  width: 291px;
+  height: 74px;
+  margin: 120px auto 15px;
+  background: url(../images/public.png) no-repeat;
+  background-position: 0 -1280px;
+}
+.game-full .game-full-icon {
+  width: 106px;
+  height: 110px;
+  margin: 0 auto;
+  background: url(../images/public.png) no-repeat;
+  background-position: -692px -402px;
+}
+.game-full .game-full-content {
+  width: 510px;
+  margin: 40px auto;
+  border-top: 1px #9c9c9c solid;
+  border-bottom: 1px #9c9c9c solid;
+  padding: 50px 0;
+}
+.game-full .game-full-content .game-full-words {
+  width: 427px;
+  height: 31px;
+  margin: 0 auto;
+  background: url(../images/public.png) no-repeat;
+  background-position: 0px -1240px;
+}
+.game-full .game-full-sure {
+  width: 178px;
+  height: 86px;
+  margin: 60px auto 0;
+  background: url(../images/public.png) no-repeat;
+  background-position: -412px -202px;
+}
 .game-share-tips {
   background: rgba(0, 0, 0, 0.88);
   z-index: 999;
@@ -456,6 +498,37 @@ body {
   background: url(../images/public.png) no-repeat;
   background-position: -410px -202px;
 }
+.game-pubcode {
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 999;
+  left: 0;
+  top: 0;
+  z-index: 2222;
+}
+.game-pubcode .game-pubcode-pic {
+  width: 389px;
+  height: 389px;
+  margin: 280px auto 60px;
+}
+.game-pubcode .game-pubcode-pic img {
+  width: 389px;
+  height: 389px;
+  display: block;
+}
+.game-pubcode .game-pubcode-content {
+  border-top: 1px #9c9c9c solid;
+  padding-top: 45px;
+  margin: 0 auto;
+  width: 528px;
+}
+.game-pubcode .game-pubcode-content p {
+  width: 750px;
+  text-align: center;
+  font-size: 32px;
+  color: #fff;
+  margin-left: -110px;
+  line-height: 40px;
+}
 .game-share {
   overflow: hidden;
   background: rgba(0, 0, 0, 0.88);
@@ -483,11 +556,19 @@ body {
   top: 30px;
   left: 0;
 }
-.game-share .game-share-top .game-share-head div img {
+.game-share .game-share-top .game-share-head div div {
+  width: 180px;
+  height: 180px;
+  background: red;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.game-share .game-share-top .game-share-head div div img {
   width: 172px;
   height: 172px;
   border-radius: 50%;
-  border: 4px red solid;
+  margin: 4px;
+  display: block;
 }
 .game-share .game-share-top .game-share-head div p {
   font-size: 30px;
