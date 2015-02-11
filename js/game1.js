@@ -720,6 +720,12 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			location.href = API.game1Src;
 		});
+
+		share_tips.click(function(){
+
+			$(this).fadeOut('fast');
+		});
+
 	}
 
 
