@@ -2,7 +2,7 @@
 <html lang="zh-CN">
     <head>
 		<meta charset="utf-8">
-		<base href="http://1251063774.cdn.myqcloud.com/1251063774/game/">
+		<!-- <base href="http://1251063774.cdn.myqcloud.com/1251063774/game/"> -->
 		<meta name="author" content="Tencent-CP">
 		<meta name="Copyright" content="Tencent" />
 		<meta name="format-detection" content="telephone=no">
@@ -12,13 +12,19 @@
 		<meta name="Description" content="">
 		<meta name="Keywords" content="腾讯游戏 纷享快乐 线上游乐场 游戏">
 		<title>我们15个理想生活养成记</title>
-		<link rel="stylesheet" href="css/game1.css?v=0.1.3">
+		<link rel="stylesheet" href="css/game1.css?v=0.1.5">
 		<script type="test/javascript" src="js/meta-device.js"></script>
 	</head>
 	<body>
 		
 		<!-- 游戏区域 -->
 		<div id="wrapper" class="fullscreen wrapper">
+
+			<div id="game1_tips" class="pa game1-tips">
+				<div class="game1-tips-mask"></div>
+				<p>·按住锯子把手，在此区域内滑动，</p>
+				<p>&nbsp;以避免退出游戏。 </p>
+			</div>
 
 			<audio id="audio_success" src="audio/game1/success.mp3"  preload="auto" class="none"></audio>
 			<audio id="audio_fail" src="audio/game1/fail.mp3"  preload="auto" class="none"></audio>
@@ -69,12 +75,8 @@
 		<!-- 关注公众号 -->
 		<div id="pubcode" class="pa fullscreen game-pubcode none">
 			
-			<div class="game-pubcode-pic"><img src="images/public_code.jpg" alt=""></div>
+			<img class="img-100" src="images/public_code.png" alt="">
 
-			<div class="game-pubcode-content">
-				<p>长按此二维码选择“识别图中二维码”即可添加</p>
-				<p>微信号：women15ge</p>
-			</div>
 		</div>
 
 		<!-- 分享提示 -->
@@ -257,7 +259,7 @@
 
 		    var require = {
 		
-		         urlArgs: 'v=0.1.3'
+		         urlArgs: 'v=0.1.5'
 		    };
 		
 		</script>

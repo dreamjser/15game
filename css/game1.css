@@ -505,30 +505,6 @@ body {
   top: 0;
   z-index: 2222;
 }
-.game-pubcode .game-pubcode-pic {
-  width: 389px;
-  height: 389px;
-  margin: 280px auto 60px;
-}
-.game-pubcode .game-pubcode-pic img {
-  width: 389px;
-  height: 389px;
-  display: block;
-}
-.game-pubcode .game-pubcode-content {
-  border-top: 1px #9c9c9c solid;
-  padding-top: 45px;
-  margin: 0 auto;
-  width: 528px;
-}
-.game-pubcode .game-pubcode-content p {
-  width: 750px;
-  text-align: center;
-  font-size: 32px;
-  color: #fff;
-  margin-left: -110px;
-  line-height: 40px;
-}
 .game-share {
   overflow: hidden;
   background: rgba(0, 0, 0, 0.88);
@@ -682,10 +658,10 @@ body {
   background: url(../images/game1/game1.png) no-repeat;
   background-position: -8px -754px;
 }
-.game-code .code-title2 {
+.game-code .code-title3 {
   width: 387px;
   height: 121px;
-  background: url(../images/game2/code_title.png) no-repeat;
+  background: url(../images/game3/code_title.png) no-repeat;
 }
 .game-code .code-desc {
   width: 578px;
@@ -702,8 +678,8 @@ body {
   background: url(../images/game1/game1.png) no-repeat;
   background-position: 0px -158px;
 }
-.game-code .code-desc .code-desc-pic2 {
-  background: url(../images/game2/code_words.png) no-repeat;
+.game-code .code-desc .code-desc-pic3 {
+  background: url(../images/game3/code_words.png) no-repeat;
 }
 .game-code .code-desc .code-icon {
   width: 132px;
@@ -714,8 +690,8 @@ body {
   background: url(../images/game1/game1.png) no-repeat;
   background-position: -606px -106px;
 }
-.game-code .code-desc .code-icon2 {
-  background: url(../images/game2/code_icon.png) no-repeat;
+.game-code .code-desc .code-icon3 {
+  background: url(../images/game3/code_icon.png) no-repeat;
 }
 .game-code .code-pic {
   width: 232px;
@@ -837,10 +813,10 @@ body {
   background: url(../images/game1/game1.png) no-repeat;
   background-position: 0 -300px;
 }
-.game-link .link-desc .link-desc-pic2 {
+.game-link .link-desc .link-desc-pic3 {
   width: 519px;
   height: 317px;
-  background: url(../images/game2/link_words.png) no-repeat;
+  background: url(../images/game3/link_words.png) no-repeat;
 }
 .game-link .link-sure {
   width: 178px;
@@ -923,6 +899,11 @@ body {
     margin-top: -10px;
   }
 }
+@media only screen and (max-device-height: 500px) {
+  .game-pubcode img {
+    margin-top: -200px;
+  }
+}
 @media only screen and (device-width: 320px) and (device-height: 568px) {
   .game-share .game-share-top {
     height: 900px;
@@ -967,6 +948,9 @@ body {
   .game-share .game-share-bottom div:last-child {
     margin-top: -10px;
   }
+  .game-pubcode img {
+    margin-top: -200px;
+  }
 }
 @media only screen and (device-width: 800px) and (device-height: 1280px) {
   .game-share .game-share-top {
@@ -982,6 +966,9 @@ body {
   .game-share .game-share-bottom div:last-child {
     margin-top: -10px;
   }
+  .game-pubcode img {
+    margin-top: -200px;
+  }
 }
 /*page1.less*/
 body {
@@ -992,6 +979,23 @@ body {
 }
 .tree-right-bg {
   background: url(../images/game1/tree_right.png) no-repeat;
+}
+.wrapper .game1-tips {
+  width: 570px;
+  right: 70px;
+  bottom: 400px;
+  z-index: 999;
+}
+.wrapper .game1-tips .game1-tips-mask {
+  height: 180px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50px;
+  margin-bottom: 25px;
+}
+.wrapper .game1-tips p {
+  color: #000;
+  font-size: 32px;
+  letter-spacing: 2px;
 }
 .wrapper .tree-number-box {
   width: 312px;
@@ -1028,8 +1032,8 @@ body {
 .wrapper .game-arrow {
   width: 90px;
   height: 90px;
-  left: 96px;
-  bottom: 530px;
+  left: 130px;
+  bottom: 560px;
   background: url(../images/game1/game1.png) no-repeat;
   background-position: -602px 0;
 }
@@ -1065,7 +1069,7 @@ body {
   width: 549px;
   height: 152px;
   right: -75px;
-  bottom: 420px;
+  bottom: 450px;
   background: url(../images/game1/tree_left.png) no-repeat;
   background-position: 0 0;
   z-index: 8;
@@ -1105,6 +1109,13 @@ body {
 .bg-r .wrapper {
   overflow: hidden;
 }
+.bg-r .wrapper .game1-tips {
+  right: inherit;
+  left: 70px;
+}
+.bg-r .wrapper .game1-tips p {
+  padding-left: 30px;
+}
 .bg-r .wrapper .tree-number-box {
   left: inherit;
   right: 20px;
@@ -1115,7 +1126,7 @@ body {
 }
 .bg-r .wrapper .game-arrow {
   left: inherit;
-  right: 96px;
+  right: 130px;
 }
 .bg-r .wrapper .tree-box {
   right: inherit;

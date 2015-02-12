@@ -73,6 +73,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		arrow = $('#arrow'),
 		saw = $('#saw'),
 		tree_top = $('#tree_top'),
+		game1_tips = $('#game1_tips'),
 		sawY = 0;
 
 	var tree_sp = new Sprite(tree_ani[0], {
@@ -144,6 +145,12 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			code.hide();
 
 			this.beginTime();
+
+			setTimeout(function(){
+
+				game1_tips.fadeOut(800);
+
+			},2000);
 
 			pubShare({
 
@@ -543,7 +550,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			X = -70;
 		}
 
-		sawY += 8;
+		sawY += 14;
 
 		arrow.animate({
 
@@ -661,14 +668,16 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 				url: API.submitPriceQQ,
 
+				type: 'post',
+
 				data: {
 					qq: qq,
-					type: 1
+					t: 1
 				},
 
 				success: function(d) {
 
-					var data = typeof d === "string" ? $.parseJSON : d;
+					var data = typeof d === "string" ? $.parseJSON(d) : d;
 
 					if (data.err === 0) {
 
@@ -732,7 +741,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	function init() {
 
 		time_leave.html(CONFIG.time);
-
+		
 		pubShare({
 
 			content: Share.content1

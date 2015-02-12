@@ -69,7 +69,7 @@ define(['zepto', 'wx', 'public'], function($, wx, Pub) {
 			imgSrc = config.imgUrl || imgUrl;
 
 		console.log(title + "--" + content + "--" + href + "--" + imgSrc);
-
+		
 		wx.ready(function() {
 
 			wx.onMenuShareAppMessage({
@@ -92,9 +92,9 @@ define(['zepto', 'wx', 'public'], function($, wx, Pub) {
 				}
 			});
 
-
+			
 			wx.onMenuShareTimeline({
-				title: title,
+				title: content,
 				link: href,
 				imgUrl: imgSrc,
 				trigger: function(res) {

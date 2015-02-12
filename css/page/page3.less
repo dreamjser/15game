@@ -1,7 +1,7 @@
 
 body{
 
-	background: url(../images/game2/game2_bg.jpg) no-repeat center bottom;
+	background: url(../images/game3/game3_bg.jpg) no-repeat center bottom;
 }
 
 .wrapper{
@@ -23,13 +23,229 @@ body{
 			margin-left: 22px;
 		}
 	}
+
+	.game3-cloud{
+
+		width: 266px;
+		height: 79px;
+		background: url(../images/game3/cloud.png) no-repeat;
+		left: 460px;
+		top: 180px;
+		-webkit-animation:cloud 40s linear infinite;
+		-webkit-animation-delay:1s;
+		
+		&:last-child{
+			left: -80px;
+			top: 220px;
+			-webkit-animation:cloud2 30s linear infinite;
+			-webkit-animation-delay:3s;
+		}
+	}
+
+	.game3-cloud2{
+
+		display: none;
+	}
+
+	.game3-sun{
+		
+		visibility: visible;
+		width: 78px;
+		height: 77px;
+		left: 500px;
+		top: 126px;
+		background: url(../images/game3/sun.png) no-repeat;
+		
+	}
+
+	.game3-safe{
+
+		width: 750px;
+		height: 261px;
+		bottom: 550px;
+		z-index: 188;
+		background: url(../images/game3/area.png) no-repeat;
+	}
+
+	.game3-meters{
+
+		width: 239px;
+		height: 51px;
+		left: 20px;
+		bottom: 40px;
+		background: url(../images/game3/meters.png) no-repeat;
+		span{
+			display: block;
+			width: 100px;
+			height: 80px;
+			position: absolute;
+			top: -25px;
+			left: 8px;
+			font-size: 80px;
+			color: #fff;
+		}
+	}
+
+	.game3-arrow{
+
+		width: 250px;
+		left: 250px;
+		bottom: 135px;
+		div{
+			width: 90px;
+			height: 90px;
+			background: url(../images/game3/arrow_top.png) no-repeat;
+			&:last-child{
+				background-image: url(../images/game3/arrow_bottom.png);
+			}
+		}
+		
+	}
+
+	.game3-stick{
+
+		width: 587px;
+		height: 26px;
+		bottom: 680px;
+		right: -10px;
+		z-index: 333;
+		background: url(../images/game3/line_left.png) no-repeat;
+		-webkit-transform-origin:right center;
+
+		.game3-bucket{
+
+			width: 260px;
+			height: 411px;
+			right: -130px;
+			top: -6px;
+			background: url(../images/game3/tong.png) no-repeat;
+		}
+	}
+
 }
 
 .bg-r{
 
 	
-	background-image: url(../images/game2/game2_bg_r.jpg);
+	background-image: url(../images/game3/game3_bg_r.jpg);
+	
+	.wrapper{
 
+		.time-box{
+				
+			left: inherit;
+			right: 20px;
+		}
+
+
+		.game3-cloud{
+
+			top: 180px;
+			&:last-child{
+				top: 300px;
+			}
+		}
+
+		.game3-cloud2{
+			
+			display: block;
+			left: 200px;
+			top: 100px;
+			-webkit-animation:cloud 50s linear infinite;
+			-webkit-animation-delay:5s;
+		}
+
+		.game3-sun{
+
+			width: 0;
+			height: 0;
+			display: none;
+			visibility: hidden;
+			
+		}
+
+		.game3-meters{
+			
+			left: inherit;
+			right: 0px;
+		}
+
+		.game3-stick{
+
+			right: inherit;
+			left: -10px;
+			background-image: url(../images/game3/line_right.png);
+			-webkit-transform-origin:left center;
+
+			.game3-bucket{
+
+				left: -130px;
+			}
+		}
+	}
 	
+}
+
+
+@-webkit-keyframes cloud
+{
+0%   { -webkit-transform:translate3d(0,0,0);}
+25%  { -webkit-transform:translate3d(50px,0,0);}
+50%  { -webkit-transform:translate3d(0,0,0);}
+75%  { -webkit-transform:translate3d(-120px,0,0);}
+100% { -webkit-transform:translate3d(0,0,0);}
+}
+
+@-webkit-keyframes cloud2
+{
+0%   { -webkit-transform:translate3d(0,0,0);}
+25%  { -webkit-transform:translate3d(0px,0,0);}
+50%  { -webkit-transform:translate3d(0,0,0);}
+75%  { -webkit-transform:translate3d(-100px,0,0);}
+100% { -webkit-transform:translate3d(0,0,0);}
+}
+
+@-webkit-keyframes cloud3
+{
+0%   { -webkit-transform:translate3d(0,0,0);}
+25%  { -webkit-transform:translate3d(-10px,0,0);}
+50%  { -webkit-transform:translate3d(0,0,0);}
+75%  { -webkit-transform:translate3d(100px,0,0);}
+100% { -webkit-transform:translate3d(0,0,0);}
+}
+
+@media only screen and (min-device-height:520px) {
 	
+	.wrapper{
+
+		.game3-cloud{
+			
+			top: 260px;
+			&:last-child{
+				
+				top: 300px;
+			}
+		}
+
+		.game3-sun{
+			
+			top: 220px;
+		}
+	}
+
+	.bg-r{
+
+		.game3-cloud{
+
+			&:last-child{
+				top: 380px;
+			}
+		}
+
+		.game3-cloud2{
+
+			top: 120px;
+		}
+		
+	}
 }

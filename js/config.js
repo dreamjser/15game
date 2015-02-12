@@ -56,7 +56,7 @@
 	ImgArr.arr1 = [
 		'images/game1/game1_bg.jpg',
 		'images/public.png',
-		'images/public_code.jpg'
+		'images/public_code.png'
 	];
 	// game1 left
 	ImgArr.arr1_left = [
@@ -71,6 +71,21 @@
 		'images/game1/game1_bg_r.jpg',
 		'images/game1/tree_right.png',
 		'images/game1/mx2.png'
+	];
+
+	// game1图片
+	ImgArr.arr3 = [
+		'images/game3/game3_bg.jpg',
+		'images/public.png',
+		'images/public_code.png'
+	];
+	// game1 left
+	ImgArr.arr1_left = [
+
+	];
+	// game1 right
+	ImgArr.arr1_right = [
+
 	];
 
 	window.API = API;
