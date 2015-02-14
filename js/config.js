@@ -4,7 +4,7 @@
 		//是否未测试环境
 		test = false,
 
-		GAME1_TIMES = 60;
+		GAME1_TIMES = 75;
 
 	API.home = 'http://15.qq.com/game';
 
@@ -56,7 +56,8 @@
 	ImgArr.arr1 = [
 		'images/game1/game1_bg.jpg',
 		'images/public.png',
-		'images/public_code.png'
+		'images/public_code.png',
+		'images/game1/animation.png'
 	];
 	// game1 left
 	ImgArr.arr1_left = [
@@ -79,14 +80,7 @@
 		'images/public.png',
 		'images/public_code.png'
 	];
-	// game1 left
-	ImgArr.arr1_left = [
 
-	];
-	// game1 right
-	ImgArr.arr1_right = [
-
-	];
 
 	window.API = API;
 	window.Share = Share;

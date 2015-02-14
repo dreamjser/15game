@@ -58,6 +58,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		ohead = $('#ohead'),
 		audio_success = $('#audio_success')[0],
 		audio_fail = $('#audio_fail')[0],
+		audio_over = $('#audio_over')[0],
 		time_num = $('#time_num'),
 		tree_number = $('#tree_number'),
 		tree_ani = $('#tree_ani'),
@@ -73,7 +74,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		arrow = $('#arrow'),
 		saw = $('#saw'),
 		tree_top = $('#tree_top'),
-		game1_tips = $('#game1_tips'),
+		// game1_tips = $('#game1_tips'),
 		sawY = 0;
 
 	var tree_sp = new Sprite(tree_ani[0], {
@@ -110,8 +111,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		time: 60,
 
-		// time: 20,
-
 		sawCount: 4,
 
 		sawTimes: GAME1_TIMES,
@@ -125,6 +124,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 	var socket,
 		time_number = CONFIG.time,
+		auto_linkAni,
+		beginTimeAuto,
 		tree_total_num = 0,
 		score_count = 0,
 		roomId = Pub.getUrlParam('chat'),
@@ -146,15 +147,17 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			this.beginTime();
 
-			setTimeout(function(){
+			// setTimeout(function(){
 
-				game1_tips.fadeOut(800);
+			// 	game1_tips.fadeOut(800);
 
-			},2000);
+			// },2000);
 
 			pubShare({
 
-				content: Share.content1
+				content: Share.content1,
+
+				href : API.game1Src
 			});
 
 			restart.click(function() {
@@ -170,7 +173,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		beginTime: function() {
 
-			var beginTimeAuto = setInterval(function() {
+			beginTimeAuto = setInterval(function() {
 
 				time_number--;
 
@@ -216,6 +219,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			ohead.attr('src', oUserInfo.head);
 
 			share.fadeIn('fast');
+
+			audio_over.play();
 		},
 
 		restartGame: function() {
@@ -228,6 +233,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			time_number = CONFIG.time;
 			time_leave.html(time_number);
 			time_num.html(3);
+			clearInterval(beginTimeAuto);
+			clearInterval(auto_linkAni);
 			link_sure.removeClass(CONFIG.linkClass);
 			arrow.removeClass(CONFIG.sawLangClass);
 			$('.pie').css({
@@ -239,6 +246,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			arrow.css({
 				'-webkit-transform': 'translate3d(0,0,0)'
 			});
+
+			initMobilePos();
+
+			$('.link-desc-showtop').children().hide();
+			$('#show_words1').show();
 
 			share.hide();
 			showConnectSuccess();
@@ -297,6 +309,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		link.show();
 
+		playLinkAnimation();
+
 		link_sure.click(function() {
 
 			socket.emit('confirm', JSON.stringify(userInfo));
@@ -309,8 +323,113 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 	}
 
+
+	// 演示动画
+	function playLinkAnimation(){
+
+		playAnimation();
+
+		auto_linkAni = setInterval(playAnimation,9800);
+
+	}
+
+
+	function playAnimation(){
+
+		var time = 500;
+
+		delay(function(){
+
+			initMobilePos();
+			$('.link-desc-showtop').children().hide();
+			$('#show_words1').show();
+
+			delay(function(){
+
+
+				$('.show-hand').animate({translate3d : '-50px,0,0'},time,'easeIn');
+
+				$('.show-arrow').animate({translate3d : '-10px,0,0'},time,'easeIn',function(){
+
+					delay(function(){
+
+						initMobilePos();
+
+						$('.show-hand').animate({translate3d : '-50px,0,0'},time,'easeIn');
+
+						$('.show-arrow').animate({translate3d : '-10px,0,0'},time,'easeIn', function(){
+
+							$('#show_words1').fadeOut('fast', function(){
+
+								$('#show_right').fadeIn('fast');
+							});
+							
+						});
+						
+					},500);
+					
+				});
+
+			},500);
+
+			delay(function(){
+
+				$('.link-desc-showtop').children().hide();
+				$('#show_words2').show();
+
+				initMobilePos();
+
+				delay(function(){
+
+					$('.show-hand').eq(0).animate({translate3d : '-50px,0,0'},time,'easeIn',function(){
+
+						$('.show-hand').eq(1).animate({translate3d : '-50px,0,0'},time,'easeIn');
+						$('.show-arrow').eq(1).animate({translate3d : '-10px,0,0'},time,'easeIn',function(){
+
+							delay(function(){
+
+								initMobilePos();
+
+								$('.show-hand').eq(0).animate({translate3d : '-50px,0,0'},time,'easeIn',function(){
+
+									$('.show-hand').eq(1).animate({translate3d : '-50px,0,0'},time,'easeIn');
+									$('.show-arrow').eq(1).animate({translate3d : '-10px,0,0'},time,'easeIn',function(){
+
+										$('#show_words2').fadeOut(time, function(){
+
+											$('#show_wrong').fadeIn('fast');
+										});
+										
+									});
+								});
+
+								$('.show-arrow').eq(0).animate({translate3d : '-10px,0,0'},time,'easeIn');
+
+							},500);
+						});
+					});
+
+					$('.show-arrow').eq(0).animate({translate3d : '-10px,0,0'},time,'easeIn');
+
+				},1000);
+				
+			},3800);
+
+		},1000);
+		
+	}
+	
+	function initMobilePos(){
+
+		$('.show-hand').css({'-webkit-transform':'translate3d(0,0,0)'});
+		$('.show-arrow').css({'-webkit-transform':'translate3d(0,0,0)'});
+	}
+
+
 	//开始游戏倒计时
 	function gameTimeBegin() {
+
+		clearInterval(auto_linkAni);
 
 		link.hide();
 
@@ -507,9 +626,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			tree_top.animate({
 				translate3d: '0,-200px,0'
-			}, CONFIG.duration, function() {
+			}, CONFIG.duration/2, function() {
 
-				tree_top.fadeOut(CONFIG.duration, function() {
+				tree_top.fadeOut(CONFIG.duration/2, function() {
 
 					tree_top.css({
 						'-webkit-transform': 'translate3d(0,0,0)'
@@ -556,13 +675,13 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			translate3d: X + 'px,' + sawY + 'px,0'
 
-		}, 300, 'easeIn');
+		}, 150, 'easeIn');
 
 		saw.animate({
 
 			translate3d: X + 'px,' + sawY + 'px,0'
 
-		}, 300, function() {
+		}, 150, function() {
 
 			isTouch = true;
 
@@ -744,7 +863,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		
 		pubShare({
 
-			content: Share.content1
+			content: Share.content1,
+
+			href : API.game1Src
 		});
 
 		setRoomId();

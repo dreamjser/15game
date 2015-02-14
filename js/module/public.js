@@ -87,7 +87,7 @@ define(['zepto'], function() {
 
 				result && result();
 
-			},500);
+			},2000);
 
 		});
 	}

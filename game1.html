@@ -2,7 +2,7 @@
 <html lang="zh-CN">
     <head>
 		<meta charset="utf-8">
-		<!-- <base href="http://1251063774.cdn.myqcloud.com/1251063774/game/"> -->
+		<!-- <base href="http://1251063774.cdn.myqcloud.com/1251063774/game/ -->
 		<meta name="author" content="Tencent-CP">
 		<meta name="Copyright" content="Tencent" />
 		<meta name="format-detection" content="telephone=no">
@@ -12,7 +12,7 @@
 		<meta name="Description" content="">
 		<meta name="Keywords" content="腾讯游戏 纷享快乐 线上游乐场 游戏">
 		<title>我们15个理想生活养成记</title>
-		<link rel="stylesheet" href="css/game1.css?v=0.1.5">
+		<link rel="stylesheet" href="css/game1.css?v=0.1.14">
 		<script type="test/javascript" src="js/meta-device.js"></script>
 	</head>
 	<body>
@@ -20,12 +20,13 @@
 		<!-- 游戏区域 -->
 		<div id="wrapper" class="fullscreen wrapper">
 
-			<div id="game1_tips" class="pa game1-tips">
+			<!-- <div id="game1_tips" class="pa game1-tips">
 				<div class="game1-tips-mask"></div>
 				<p>·按住锯子把手，在此区域内滑动，</p>
 				<p>&nbsp;以避免退出游戏。 </p>
-			</div>
+			</div> -->
 
+			<audio id="audio_over" src="audio/game1/over.mp3"  preload="auto" class="none"></audio>
 			<audio id="audio_success" src="audio/game1/success.mp3"  preload="auto" class="none"></audio>
 			<audio id="audio_fail" src="audio/game1/fail.mp3"  preload="auto" class="none"></audio>
 			
@@ -212,7 +213,32 @@
 
 			<div class="link-icon"></div>
 
-			<div class="link-desc">
+			<div class="link-desc link-desc1">
+
+				<div class="link-desc-show">
+
+					<div class="link-desc-showtop">
+						
+						<div id="show_right" class="show-right none"></div>
+						<div id="show_wrong" class="show-wrong none"></div>
+						<div id="show_words1" class="show-words1"></div>
+						<div id="show_words2" class="show-words2 none"></div>
+					</div>
+
+					<div class="link-desc-showcenter pr">
+						
+						<div class="pa show-mobile show-mobile1">
+							<div class="pa show-hand"></div>
+							<div class="pa show-arrow"></div>
+						</div>
+						<div class="pa show-point"></div>
+						<div class="pa show-mobile show-mobile2">
+							<div class="pa show-hand"></div>
+							<div class="pa show-arrow"></div>
+						</div>
+					</div>
+				</div>
+
 				<div class="link-desc-pic"></div>
 			</div>
 
@@ -259,7 +285,7 @@
 
 		    var require = {
 		
-		         urlArgs: 'v=0.1.5'
+		         urlArgs: 'v=0.1.13'
 		    };
 		
 		</script>
