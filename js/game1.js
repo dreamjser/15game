@@ -345,7 +345,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 				showAni = false;
 			});
 
-		},2000);
+		},2500);
 
 		b = setTimeout(function(){
 
@@ -357,7 +357,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			},500);
 
-		},4000);
+		},5000);
 
 		d = setTimeout(function(){
 
@@ -368,7 +368,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 				showAni = false;
 			});
 			
-		},6000);
+		},6500);
 
 
 		$('.code-show-know').click(function(){
