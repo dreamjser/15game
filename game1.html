@@ -12,19 +12,13 @@
 		<meta name="Description" content="">
 		<meta name="Keywords" content="腾讯游戏 纷享快乐 线上游乐场 游戏">
 		<title>我们15个理想生活养成记</title>
-		<link rel="stylesheet" href="css/game1.css?v=0.1.14">
+		<link rel="stylesheet" href="css/game1.css?v=0.1.20">
 		<script type="test/javascript" src="js/meta-device.js"></script>
 	</head>
 	<body>
 		
 		<!-- 游戏区域 -->
 		<div id="wrapper" class="fullscreen wrapper">
-
-			<!-- <div id="game1_tips" class="pa game1-tips">
-				<div class="game1-tips-mask"></div>
-				<p>·按住锯子把手，在此区域内滑动，</p>
-				<p>&nbsp;以避免退出游戏。 </p>
-			</div> -->
 
 			<audio id="audio_over" src="audio/game1/over.mp3"  preload="auto" class="none"></audio>
 			<audio id="audio_success" src="audio/game1/success.mp3"  preload="auto" class="none"></audio>
@@ -196,14 +190,37 @@
 			
 			<div class="code-title"></div>
 
-			<div class="pr tc code-desc">
-				<div class="code-desc-pic"></div>
+			<div class="pr tc code-desc code-desc1">
+				<div class="code-desc-pic code-desc-pic1"></div>
 				<div class="pa code-icon"></div>
 			</div>
 
-			<div id="code_box" class="code-pic"></div>
+			<div class="code-show">
+				
+				<div id="code_show_box" class="code-show-box clearfix">
+					
+					<div class="fl code-show-list">
 
-			<div class="code-invite"></div>
+						<div class="code-show-title1"></div>
+						<div class="code-show-pic1"></div>
+						<div class="code-show-know"></div>
+
+					</div>
+					<div class="fl code-show-list">
+						<div class="code-show-title2"></div>
+						<div class="code-show-pic2 pr">
+							<div class="code-show-m1 pa"></div>
+							<div class="code-show-m2 pa"><span id="m2_code" class="m2-ani"></span></div>
+						</div>
+						<div class="code-show-know"></div>
+					</div>
+					<div class="fl code-show-list">
+						<div id="code_box" class="code-pic code-pic1"></div>
+						<div class="code-show-reknow"></div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 		
 		<!-- 链接成功 -->
@@ -215,34 +232,15 @@
 
 			<div class="link-desc link-desc1">
 
-				<div class="link-desc-show">
+				<div class="link-desc-photo">
 
-					<div class="link-desc-showtop">
-						
-						<div id="show_right" class="show-right none"></div>
-						<div id="show_wrong" class="show-wrong none"></div>
-						<div id="show_words1" class="show-words1"></div>
-						<div id="show_words2" class="show-words2 none"></div>
-					</div>
-
-					<div class="link-desc-showcenter pr">
-						
-						<div class="pa show-mobile show-mobile1">
-							<div class="pa show-hand"></div>
-							<div class="pa show-arrow"></div>
-						</div>
-						<div class="pa show-point"></div>
-						<div class="pa show-mobile show-mobile2">
-							<div class="pa show-hand"></div>
-							<div class="pa show-arrow"></div>
-						</div>
-					</div>
+					<img id="link_show" src="images/game1/show/show1.png" alt="">
 				</div>
 
-				<div class="link-desc-pic"></div>
+				<div class="link-desc-words"></div>
 			</div>
 
-			<div id="link_sure" class="link-sure"></div>
+			<div id="link_sure" class="link-sure link-sure1"></div>
 		</div>
 		
 		<!-- 进入游戏倒计时 -->
@@ -285,7 +283,7 @@
 
 		    var require = {
 		
-		         urlArgs: 'v=0.1.13'
+		         urlArgs: 'v=0.1.20'
 		    };
 		
 		</script>

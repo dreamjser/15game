@@ -2,6 +2,7 @@
 <html lang="zh-CN">
     <head>
 		<meta charset="utf-8">
+		<!-- <base href="http://1251063774.cdn.myqcloud.com/1251063774/game/ -->
 		<meta name="author" content="Tencent-CP">
 		<meta name="Copyright" content="Tencent" />
 		<meta name="format-detection" content="telephone=no">
@@ -11,13 +12,15 @@
 		<meta name="Description" content="">
 		<meta name="Keywords" content="腾讯游戏 纷享快乐 线上游乐场 游戏">
 		<title>我们15个理想生活养成记</title>
-		<link rel="stylesheet" href="css/game3.css?v=0.1.9">
-		<script type="test/javascript" src="js/meta-device.js"></script>
+		<link rel="stylesheet" href="css/game3.css?v=0.1.1">
+		<script type="text/javascript" src="js/meta-device.js"></script>
 	</head>
 	<body>
 		
 		<!-- 游戏区域 -->
 		<div id="wrapper" class="fullscreen wrapper">
+			
+			<audio id="audio_over" src="audio/game1/over.mp3"  preload="auto" class="none"></audio>
 
 			<div id="time_box" class="pa time-box">
 				<span id="time_leave" class="time-leave">60</span>
@@ -35,10 +38,17 @@
 				<div class="fr" id="arrow_bottom"></div>
 			</div>
 
-			<div id="stick" class="pa game3-stick">
+			<div class="pa game3-stick-box">
 				
+				<div id="stick" class="pa game3-stick"></div>		
+						
 				<div id="bucket" class="pa game3-bucket"></div>
+
+				<div id="bucket_end" class="pa game3-bucket-backend"></div>
+
 			</div>
+
+			<div id="danger" class="pa game3-danger none"></div>
 
 			<div class="pa game3-sun"></div>
 

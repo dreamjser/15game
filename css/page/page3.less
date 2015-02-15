@@ -28,7 +28,8 @@ body{
 
 		width: 266px;
 		height: 79px;
-		background: url(../images/game3/cloud.png) no-repeat;
+		.game3-bg;
+		background-position: -5px -276px;
 		left: 460px;
 		top: 180px;
 		-webkit-animation:cloud 40s linear infinite;
@@ -54,7 +55,8 @@ body{
 		height: 77px;
 		left: 500px;
 		top: 126px;
-		background: url(../images/game3/sun.png) no-repeat;
+		.game3-bg;
+		background-position: -1156px -332px;
 		
 	}
 
@@ -63,8 +65,9 @@ body{
 		width: 750px;
 		height: 261px;
 		bottom: 550px;
-		z-index: 188;
-		background: url(../images/game3/area.png) no-repeat;
+		z-index: 98;
+		.game3-bg;
+		background-position: -5px -5px;
 	}
 
 	.game3-meters{
@@ -73,7 +76,8 @@ body{
 		height: 51px;
 		left: 20px;
 		bottom: 40px;
-		background: url(../images/game3/meters.png) no-repeat;
+		.game3-bg;
+		background-position: -907px -332px;
 		span{
 			display: block;
 			width: 90px;
@@ -95,32 +99,69 @@ body{
 		div{
 			width: 90px;
 			height: 90px;
-			background: url(../images/game3/arrow_top.png) no-repeat;
+			.game3-bg;
+			background-position: -765px -105px;
 			&:last-child{
-				background-image: url(../images/game3/arrow_bottom.png);
+				background-position: -765px -5px;
 			}
 		}
 		
 	}
 
-	.game3-stick{
+	.game3-stick-box{
 
 		width: 587px;
 		height: 26px;
 		bottom: 680px;
 		right: -10px;
 		z-index: 333;
-		background: url(../images/game3/line_left.png) no-repeat;
-		-webkit-transform-origin:right center;
 
+		.game3-stick{
+			
+			width: 100%;
+			height: 100%;
+			right: 0;
+			top: 0;
+			z-index: 8;
+			.game3-bg;
+			background-position: -5px -747px;
+			-webkit-transform-origin:right center;
+		}
+		
 		.game3-bucket{
 
 			width: 260px;
 			height: 411px;
 			right: -130px;
 			top: -6px;
-			background: url(../images/game3/tong.png) no-repeat;
+			.game3-bg;
+			background-position: -757px -419px;
+			-webkit-transform-origin:center center;
 		}
+
+		.game3-bucket-backend{
+
+			width: 170px;
+			height: 411px;
+			right: -130px;
+			top: -6px;
+			z-index: 10;
+			.game3-bg;
+			background-position: -848px -419px;
+			-webkit-transform-origin:center top;
+		}
+	}
+
+	.game3-danger{
+
+		width: 69px;
+		height: 69px;
+		left: 45px;
+		bottom: 660px;
+		z-index: 888;
+		-webkit-animation:danger 1s linear infinite;
+		.game3-bg;
+		background-position: -678px -349px;
 	}
 
 }
@@ -171,22 +212,50 @@ body{
 			right: 0px;
 		}
 
-		.game3-stick{
+		.game3-stick-box{
 
 			right: inherit;
 			left: -10px;
-			background-image: url(../images/game3/line_right.png);
-			-webkit-transform-origin:left center;
 
+			.game3-stick{
+				
+				right: inherit;
+				left: 0;
+				background-position: -5px -783px;
+				-webkit-transform-origin:left center;
+			}
+			
 			.game3-bucket{
-
+				
+				right: inherit;
 				left: -130px;
 			}
+
+			.game3-bucket-backend{
+
+				right: inherit;
+				left: -40px;
+			}
+		}
+
+
+		.game3-danger{
+			
+			left: inherit;
+			right: 45px;
 		}
 	}
 	
 }
 
+@-webkit-keyframes danger
+{
+0%   { opacity: (0);}
+
+50%  {  opacity: (1);}
+
+100% { opacity: (0);}
+}
 
 @-webkit-keyframes cloud
 {

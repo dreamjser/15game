@@ -65,24 +65,26 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		stick = $('#stick'),
 		bucket = $('#bucket'),
 		arrow_top = $('#arrow_top'),
-		arrow_bottom = $('#arrow_bottom');
+		arrow_bottom = $('#arrow_bottom'),
+		danger = $('#danger'),
+		bucket_end = $('#bucket_end'),
+		meters_num = $('#meters_num'),
+		audio_over = $('#audio_over')[0];
 
 
 	var CONFIG = {
 
 		duration: 800,
 
-		// time: 60,
-
 		time: 30,
 
 		sawCount: 4,
 
+		SPEED : 600,
+
 		sawTimes: GAME1_TIMES,
 
 		rightClass: 'bg-r',
-
-		sawLangClass: 'game-arrow-r',
 
 		linkClass: 'link-sure2'
 	};
@@ -90,7 +92,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	var socket,
 		time_number = CONFIG.time,
 		total_meters = 0,
+		meters_auto = 0,
 		score_count = 0,
+		metersX = 0,
 		roomId = Pub.getUrlParam('chat'),
 		isLeft = false,
 		isTouch = true,
@@ -112,9 +116,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			this.beginTime();
 
+			updateMeters();
+
 			pubShare({
 
-				content: Share.content1
+				content: Share.content3
 			});
 
 			restart.click(function() {
@@ -140,7 +146,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 					clearInterval(Game.beginTimeAuto);
 
-					socket.emit("gameover");
+					!isEnd && Game.gameOver();
 				}
 
 			}, 1000);
@@ -170,9 +176,10 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			oname.html(oUserInfo.nickname);
 			myhead.attr('src', userInfo.head);
 			ohead.attr('src', oUserInfo.head);
+			danger.hide();
 			clearInterval(Game.beginTimeAuto);
+			clearInterval(meters_auto);
 
-			share.fadeIn('fast');
 		},
 
 		restartGame: function() {
@@ -183,6 +190,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			time_leave.html(time_number);
 			time_num.html(3);
 			link_sure.removeClass(CONFIG.linkClass);
+			total_meters = 0;
+			meters_num.html(total_meters);
+
+			$('.game3-arrow').show();
+
 			stick.css({
 				'-webkit-transform': 'rotate(0deg)'
 			});
@@ -194,7 +206,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			$('.pie').css({
 				'-webkit-transform': 'rotate(0deg)'
 			});
-
 
 			share.hide();
 			showConnectSuccess();
@@ -296,17 +307,46 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 	function updateAngles(ang) {
 
-		var rot = ang / 20,
+		var rot = ang / 16,
 			tra = rot * rot * 2;
 
-		stick.animate({
-			rotate: rot + 'deg',
-		}, 50);
+		metersX = tra;
 
-		bucket.animate({
-			translate3d: tra + 'px,0,0'
-		}, 50);
+		// console.log(rot);
 
+		if(Math.abs(rot) >= 10){
+
+			danger.show();
+		}else{
+			danger.hide();
+		}
+
+		stick.css('-webkit-transform','rotate('+rot+'deg)');
+
+		bucket.css('-webkit-transform','translate3d('+tra+'px,0,0)');
+
+		bucket_end.css('-webkit-transform','translate3d('+tra+'px,0,0)');
+
+
+		// stick.animate({
+		// 	rotate: rot + 'deg',
+		// }, 50);
+
+		// bucket.animate({
+		// 	translate3d: tra + 'px,0,0'
+		// }, 50);
+
+	}
+
+	function updateMeters(){
+
+		meters_auto = setInterval(function(){
+
+			total_meters++;
+
+			meters_num.html(total_meters);
+
+		},CONFIG.SPEED);
 	}
 
 	function connectSocket() {
@@ -335,10 +375,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			});
 
 			socket.on('update', function(msg) {
-
-				// console.log(msg);
-
-				// msg = isLeft ? msg : -msg;
 
 				updateAngles(msg);
 
@@ -389,6 +425,18 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			socket.on('gameover', function(data) {
 
+				$('.game3-arrow').hide();
+
+				$('#bucket,#bucket_end').animate({translate3d:metersX*(1+0.3)+'px,200px,0'}, 5000, 'easeIn', function(){
+
+					delay(function(){
+
+						share.fadeIn('fast');
+
+					}, 500)
+					
+				});
+
 				!isEnd && Game.gameOver();
 			});
 
@@ -403,20 +451,20 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	//绑定touch事件
 	function bindTouchEvent() {
 
-		if(isLeft){
+		if (isLeft) {
 
 			arrow_top.click(turnUp);
 			arrow_bottom.click(turnDown);
 
-		}else{
-			
+		} else {
+
 			arrow_top.click(turnDown);
 			arrow_bottom.click(turnUp);
 		}
 
-		
 
-		function turnUp(){
+
+		function turnUp() {
 
 			if (isEnd) {
 				return;
@@ -426,7 +474,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		}
 
-		function turnDown(){
+		function turnDown() {
 
 			if (isEnd) {
 				return;
@@ -435,7 +483,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			socket.emit("down");
 		}
 
-		
+
 	}
 
 	//绑定断开连接页面确定按钮
@@ -443,7 +491,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		exit_sure.click(function() {
 
-			location.href = API.game1Src;
+			location.href = API.game3Src;
 		});
 	}
 
@@ -537,14 +585,16 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 				url: API.submitPriceQQ,
 
+				type: 'post',
+
 				data: {
 					qq: qq,
-					type: 1
+					t: 3
 				},
 
 				success: function(d) {
 
-					var data = typeof d === "string" ? $.parseJSON : d;
+					var data = typeof d === "string" ? $.parseJSON(d) : d;
 
 					if (data.err === 0) {
 
@@ -592,12 +642,12 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			$(this).fadeOut('fast');
 		});
 
-		full_sure.click(function() {
+		full_sure.click(function(){
 
-			location.href = API.game1Src;
+			location.href = API.game2Src;
 		});
 
-		share_tips.click(function() {
+		share_tips.click(function(){
 
 			$(this).fadeOut('fast');
 		});
@@ -615,15 +665,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		});
 
 		setRoomId();
-
-		// if (isLeft) {
-
-		// 	imgArr = imgArr.concat(ImgArr.arr3_left);
-
-		// } else {
-		// 	imgArr = imgArr.concat(ImgArr.arr3_right);
-		// }
-
 
 		bindExitSure();
 

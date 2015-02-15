@@ -65,7 +65,7 @@ define(['zepto', 'wx', 'public'], function($, wx, Pub) {
 
 		var title = config.title || shareTitle,
 			content = config.content || descContent,
-			href = config.href || lineLink,
+			href = API.home,
 			imgSrc = config.imgUrl || imgUrl;
 
 		console.log(title + "--" + content + "--" + href + "--" + imgSrc);

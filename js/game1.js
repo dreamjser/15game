@@ -77,6 +77,13 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		// game1_tips = $('#game1_tips'),
 		sawY = 0;
 
+	var playImgArr = [
+						'images/game1/show/show1.png',
+						'images/game1/show/show2.png',
+						'images/game1/show/show3.png',
+						'images/game1/show/show4.png'
+					 ];
+
 	var tree_sp = new Sprite(tree_ani[0], {
 
 		width: 197,
@@ -124,8 +131,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 	var socket,
 		time_number = CONFIG.time,
-		auto_linkAni,
 		beginTimeAuto,
+		show_auto = 0,
+		show_count = 0,
 		tree_total_num = 0,
 		score_count = 0,
 		roomId = Pub.getUrlParam('chat'),
@@ -147,12 +155,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			this.beginTime();
 
-			// setTimeout(function(){
-
-			// 	game1_tips.fadeOut(800);
-
-			// },2000);
-
 			pubShare({
 
 				content: Share.content1,
@@ -163,8 +165,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			restart.click(function() {
 
 				socket.emit('replay');
-
-				Game.restartGame();
 
 				$(this).unbind('click');
 			});
@@ -234,9 +234,13 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			time_leave.html(time_number);
 			time_num.html(3);
 			clearInterval(beginTimeAuto);
-			clearInterval(auto_linkAni);
 			link_sure.removeClass(CONFIG.linkClass);
 			arrow.removeClass(CONFIG.sawLangClass);
+
+			initShowAnimation();
+
+			initShowStep();
+
 			$('.pie').css({
 				'-webkit-transform': 'rotate(0deg)'
 			});
@@ -246,11 +250,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			arrow.css({
 				'-webkit-transform': 'translate3d(0,0,0)'
 			});
-
-			initMobilePos();
-
-			$('.link-desc-showtop').children().hide();
-			$('#show_words1').show();
 
 			share.hide();
 			showConnectSuccess();
@@ -273,7 +272,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	//PC端测试用
 	function clickTestCode(url) {
 
-		code.click(function() {
+		$('#code_box').click(function() {
 
 			window.open(url, 'blank');
 		});
@@ -302,6 +301,123 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		}
 	}
 
+	function initShowAnimation(){
+
+		show_count = 0;
+
+		$('#link_show').attr('src',playImgArr[0]);
+	}
+
+	//播放游戏演示
+	function playShowAnimation(){
+
+		show_auto = setInterval(function(){
+
+			var src = playImgArr[show_count];
+
+			$('#link_show').attr('src',src);
+
+			show_count++;
+
+			if(show_count >= playImgArr.length){
+
+				show_count = 0;
+			}
+
+
+		}, 500);
+	}
+
+	//播放步骤
+	function showPlayStep(){
+
+		var w = 750,
+			showEnd = false,
+			showAni = false,
+			a,b,c,d;
+
+		a = setTimeout(function(){
+
+			showAni = true;
+
+			$('#code_show_box').animate({translate3d : - w +'px,0,0'}, 600, 'easeIn', function(){
+
+				showAni = false;
+			});
+
+		},2000);
+
+		b = setTimeout(function(){
+
+			$('.code-show-m1').animate({translate3d : '70px,0,0', rotate: '20deg'});
+
+			c = setTimeout(function(){
+
+				$('.code-show-m2').animate({translate3d : '-70px,0,0', rotate: '-20deg'});
+
+			},500);
+
+		},4000);
+
+		d = setTimeout(function(){
+
+			showAni = true;
+
+			$('#code_show_box').animate({translate3d : - w*2 +'px,0,0'}, 600, 'easeIn', function(){
+
+				showAni = false;
+			});
+			
+		},6000);
+
+
+		$('.code-show-know').click(function(){
+
+			if(showAni){
+				return;
+			}
+
+			// $.fx.off = true;
+
+			clearTimeout(a);
+			clearTimeout(b);
+			clearTimeout(c);
+			clearTimeout(d);
+
+			$(this).unbind('click');
+
+
+			$('#code_show_box').css({'-webkit-transform':'translate3d(-1500px,0,0)'});
+
+		});
+
+		$('.code-show-reknow').click(function(){
+
+			$(this).unbind('click');
+
+			replayShowStep();
+		});
+
+	}
+
+	function initShowStep(){
+
+		// $.fx.off = false;
+
+		$('#code_show_box').css({'-webkit-transform':'translate3d(0,0,0)'});
+
+		$('.code-show-m1,.code-show-m2').css({'-webkit-transform':'translate3d(0,0,0) rotate(0)'});
+
+
+	}
+
+	function replayShowStep(){
+
+		initShowStep();
+
+		showPlayStep();
+	}
+
 	//显示链接成功
 	function showConnectSuccess() {
 
@@ -309,7 +425,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		link.show();
 
-		playLinkAnimation();
+		playShowAnimation();
 
 		link_sure.click(function() {
 
@@ -324,112 +440,10 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	}
 
 
-	// 演示动画
-	function playLinkAnimation(){
-
-		playAnimation();
-
-		auto_linkAni = setInterval(playAnimation,9800);
-
-	}
-
-
-	function playAnimation(){
-
-		var time = 500;
-
-		delay(function(){
-
-			initMobilePos();
-			$('.link-desc-showtop').children().hide();
-			$('#show_words1').show();
-
-			delay(function(){
-
-
-				$('.show-hand').animate({translate3d : '-50px,0,0'},time,'easeIn');
-
-				$('.show-arrow').animate({translate3d : '-10px,0,0'},time,'easeIn',function(){
-
-					delay(function(){
-
-						initMobilePos();
-
-						$('.show-hand').animate({translate3d : '-50px,0,0'},time,'easeIn');
-
-						$('.show-arrow').animate({translate3d : '-10px,0,0'},time,'easeIn', function(){
-
-							$('#show_words1').fadeOut('fast', function(){
-
-								$('#show_right').fadeIn('fast');
-							});
-							
-						});
-						
-					},500);
-					
-				});
-
-			},500);
-
-			delay(function(){
-
-				$('.link-desc-showtop').children().hide();
-				$('#show_words2').show();
-
-				initMobilePos();
-
-				delay(function(){
-
-					$('.show-hand').eq(0).animate({translate3d : '-50px,0,0'},time,'easeIn',function(){
-
-						$('.show-hand').eq(1).animate({translate3d : '-50px,0,0'},time,'easeIn');
-						$('.show-arrow').eq(1).animate({translate3d : '-10px,0,0'},time,'easeIn',function(){
-
-							delay(function(){
-
-								initMobilePos();
-
-								$('.show-hand').eq(0).animate({translate3d : '-50px,0,0'},time,'easeIn',function(){
-
-									$('.show-hand').eq(1).animate({translate3d : '-50px,0,0'},time,'easeIn');
-									$('.show-arrow').eq(1).animate({translate3d : '-10px,0,0'},time,'easeIn',function(){
-
-										$('#show_words2').fadeOut(time, function(){
-
-											$('#show_wrong').fadeIn('fast');
-										});
-										
-									});
-								});
-
-								$('.show-arrow').eq(0).animate({translate3d : '-10px,0,0'},time,'easeIn');
-
-							},500);
-						});
-					});
-
-					$('.show-arrow').eq(0).animate({translate3d : '-10px,0,0'},time,'easeIn');
-
-				},1000);
-				
-			},3800);
-
-		},1000);
-		
-	}
-	
-	function initMobilePos(){
-
-		$('.show-hand').css({'-webkit-transform':'translate3d(0,0,0)'});
-		$('.show-arrow').css({'-webkit-transform':'translate3d(0,0,0)'});
-	}
-
-
 	//开始游戏倒计时
 	function gameTimeBegin() {
 
-		clearInterval(auto_linkAni);
+		clearInterval(show_auto);
 
 		link.hide();
 
@@ -524,7 +538,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			socket.on('replay', function(data) {
 
 				console.log('replay');
-
 				Game.restartGame();
 			});
 
@@ -755,6 +768,8 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			}
 
 		} else {
+
+			showPlayStep();
 
 			loading.fadeOut('fast');
 		}

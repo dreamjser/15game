@@ -1,4 +1,4 @@
-(function(window) {
+ (function(window) {
 
 	var API = {},
 		//是否未测试环境
@@ -9,6 +9,8 @@
 	API.home = 'http://15.qq.com/game';
 
 	API.game1Src = 'http://15.qq.com/game/jumutou';
+
+	API.game3Src = 'http://15.qq.com/game/tong';
 
 	API.defaultHead = 'images/head.jpg';
 
@@ -30,12 +32,15 @@
 	var Share = {};
 
 	Share.imgUrl = 'http://1251063774.cdn.myqcloud.com/1251063774/game/images/share.jpg';
+	
 	Share.title = '我们15个理想生活养成记';
 
 	//首页分享
 	Share.content = '《我们15个》官方双屏协作游戏，带你实现另一种可能！';
 	//锯木头分享内容
 	Share.content1 = '创造精彩人生，你需要一个“锯”有默契的伙伴！';
+	// 采水果
+	Share.content2 = '谁能与你鼓起勇气挑战未知，谁和你“果”然合拍？';
 	//水桶分享内容
 	Share.content3 = '路途艰辛，你们只能“桶”一步调，坚韧前行！';
 
@@ -48,6 +53,7 @@
 		'images/index/index_bg.jpg',
 		'images/index/index_all.png',
 		'images/index/truck.png',
+		'images/index/price.png',
 		'images/index/index_online.png'
 
 	];
@@ -57,7 +63,11 @@
 		'images/game1/game1_bg.jpg',
 		'images/public.png',
 		'images/public_code.png',
-		'images/game1/animation.png'
+		'images/game1/game1_show.png',
+		'images/game1/show/show1.png',
+		'images/game1/show/show2.png',
+		'images/game1/show/show3.png',
+		'images/game1/show/show4.png'
 	];
 	// game1 left
 	ImgArr.arr1_left = [
@@ -77,6 +87,8 @@
 	// game1图片
 	ImgArr.arr3 = [
 		'images/game3/game3_bg.jpg',
+		'game3_bg_r.jpg',
+		'gamee.png',
 		'images/public.png',
 		'images/public_code.png'
 	];
