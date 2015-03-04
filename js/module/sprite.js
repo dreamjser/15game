@@ -35,6 +35,8 @@ define([], function() {
 
 			this.distance = this.lang == 'y' ? this.height : this.width;
 
+			this.doSprite();
+
 			this.auto = setInterval(this.bind(this, this.doSprite), this.time);
 
 		},
@@ -58,7 +60,7 @@ define([], function() {
 
 			// console.log(this.num*this.distance);
 
-			this.img.style.backgroundPosition = this._getBgPosition(this.num*this.distance);
+			this.img.style.backgroundPosition = this._getBgPosition(this.num * this.distance);
 
 			this.num++;
 		},

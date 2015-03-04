@@ -1,10 +1,27 @@
 
-body{
+.bucket-left-bg{
 
-	background: url(../images/game3/game3_bg.jpg) no-repeat center bottom;
+	background: url(../images/game3/bucket_left.png) no-repeat;
+}
+
+.bucket-right-bg{
+
+	background: url(../images/game3/bucket_right.png) no-repeat;
 }
 
 .wrapper{
+
+	.wrapper-bg{
+		height: 110%;
+		left: 0;
+		bottom: 0;
+		background: url(../images/game3/game3_bg.jpg) no-repeat center bottom;
+		
+	}
+
+	.wrapper-bg-ani{
+		-webkit-animation:walk 3s linear infinite;
+	}
 
 	.time-box{
 
@@ -108,26 +125,17 @@ body{
 		
 	}
 
-	.game3-stick-box{
+	.game3-stick{
 
 		width: 587px;
 		height: 26px;
 		bottom: 680px;
 		right: -10px;
 		z-index: 333;
+		.game3-bg;
+		background-position: -5px -747px;
+		-webkit-transform-origin:right center;
 
-		.game3-stick{
-			
-			width: 100%;
-			height: 100%;
-			right: 0;
-			top: 0;
-			z-index: 8;
-			.game3-bg;
-			background-position: -5px -747px;
-			-webkit-transform-origin:right center;
-		}
-		
 		.game3-bucket{
 
 			width: 260px;
@@ -139,17 +147,11 @@ body{
 			-webkit-transform-origin:center center;
 		}
 
-		.game3-bucket-backend{
+		.game3-bucket2{
 
-			width: 170px;
-			height: 411px;
-			right: -130px;
-			top: -6px;
-			z-index: 10;
-			.game3-bg;
-			background-position: -848px -419px;
-			-webkit-transform-origin:center top;
+			background-position: -1086px -419px;
 		}
+
 	}
 
 	.game3-danger{
@@ -164,14 +166,28 @@ body{
 		background-position: -678px -349px;
 	}
 
+	.game3-bucket-ani{
+
+		width: 569px;
+		height: 432px;
+		left: -110px;
+		bottom: 22px;
+		z-index: 888;
+		background: url(../images/game3/bucket_left.png) no-repeat 0 0;
+	}
+
 }
 
 .bg-r{
 
 	
-	background-image: url(../images/game3/game3_bg_r.jpg);
+	// background-image: url(../images/game3/game3_bg_r.jpg);
 	
 	.wrapper{
+
+		.wrapper-bg{
+			background: url(../images/game3/game3_bg_r.jpg) no-repeat center bottom;
+		}
 
 		.time-box{
 				
@@ -212,29 +228,17 @@ body{
 			right: 0px;
 		}
 
-		.game3-stick-box{
+		.game3-stick{
 
 			right: inherit;
 			left: -10px;
-
-			.game3-stick{
-				
-				right: inherit;
-				left: 0;
-				background-position: -5px -783px;
-				-webkit-transform-origin:left center;
-			}
+			background-position: -5px -783px;
+			-webkit-transform-origin:left center;
 			
 			.game3-bucket{
-				
+
 				right: inherit;
 				left: -130px;
-			}
-
-			.game3-bucket-backend{
-
-				right: inherit;
-				left: -40px;
 			}
 		}
 
@@ -244,8 +248,26 @@ body{
 			left: inherit;
 			right: 45px;
 		}
+
+		.game3-bucket-ani{
+
+			width: 577px;
+			height: 425px;
+			left: 297px;
+			bottom: 29px;
+			background: url(../images/game3/bucket_right.png) no-repeat 0 0;
+		}
 	}
 	
+}
+
+@-webkit-keyframes walk
+{
+0%   { -webkit-transform:translate3d(0,0,0);}
+25%  { -webkit-transform:translate3d(0,7px,0);}
+50%  { -webkit-transform:translate3d(0,14px,0);}
+75%  { -webkit-transform:translate3d(0,7px,0);}
+100% { -webkit-transform:translate3d(0,0,0);}
 }
 
 @-webkit-keyframes danger

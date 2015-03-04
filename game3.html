@@ -21,6 +21,11 @@
 		<div id="wrapper" class="fullscreen wrapper">
 			
 			<audio id="audio_over" src="audio/game1/over.mp3"  preload="auto" class="none"></audio>
+			<audio id="audio_drop" src="audio/game3/drop.mp3"  preload="auto" class="none"></audio>
+			<audio id="audio_anger" src="audio/game3/anger.mp3"  preload="auto" class="none"></audio>
+			<audio id="audio_click" src="audio/game3/click.mp3"  preload="auto" class="none"></audio>
+
+			<div id="wrapper_bg" class="pa fullscreen wrapper-bg"></div>
 
 			<div id="time_box" class="pa time-box">
 				<span id="time_leave" class="time-leave">60</span>
@@ -38,15 +43,13 @@
 				<div class="fr" id="arrow_bottom"></div>
 			</div>
 
-			<div class="pa game3-stick-box">
+			<div id="stick" class="pa game3-stick">
 				
-				<div id="stick" class="pa game3-stick"></div>		
-						
 				<div id="bucket" class="pa game3-bucket"></div>
 
-				<div id="bucket_end" class="pa game3-bucket-backend"></div>
-
 			</div>
+
+			<div id="bucket_ani" class="pa game3-bucket-ani none"></div>
 
 			<div id="danger" class="pa game3-danger none"></div>
 
@@ -196,14 +199,38 @@
 			
 			<div class="code-title code-title3"></div>
 
-			<div class="pr tc code-desc">
+			<div class="pr tc code-desc code-desc1">
 				<div class="code-desc-pic code-desc-pic3"></div>
 				<div class="pa code-icon code-icon3"></div>
 			</div>
 
-			<div id="code_box" class="code-pic"></div>
+			<div class="code-show">
+				
+				<div id="code_show_box" class="code-show-box clearfix">
+					
+					<div class="fl code-show-list">
 
-			<div class="code-invite"></div>
+						<div class="code-show-title1"></div>
+						<div class="code-show-pic1"></div>
+						<div class="code-show-know"></div>
+
+					</div>
+					<div class="fl code-show-list">
+						<div class="code-show-title2"></div>
+						<div class="code-show-pic2 pr">
+							<div class="code-show-m1 pa"></div>
+							<div class="code-show-m2 pa"><span id="m2_code" class="m2-ani"></span></div>
+						</div>
+						<div class="code-show-know"></div>
+					</div>
+					<div class="fl code-show-list">
+						<div id="code_box" class="code-pic code-pic1"></div>
+						<div class="code-show-share"></div>
+						<div class="code-show-reknow"></div>
+					</div>
+				</div>
+			</div>
+
 		</div>
 		
 		<!-- 链接成功 -->
@@ -213,11 +240,17 @@
 
 			<div class="link-icon"></div>
 
-			<div class="link-desc">
-				<div class="link-desc-pic link-desc-pic3"></div>
+			<div class="link-desc link-desc1">
+
+				<div class="link-desc-photo">
+
+					<img id="link_show" src="images/game3/show/show1.png" alt="">
+				</div>
+
+				<div class="link-desc-words link-desc-words3"></div>
 			</div>
 
-			<div id="link_sure" class="link-sure"></div>
+			<div id="link_sure" class="link-sure link-sure1"></div>
 		</div>
 		
 		<!-- 进入游戏倒计时 -->
@@ -246,12 +279,15 @@
 			
 		</div>
 
+		<!-- <div id="debug" style="position:fixed;width:300px;height:50px;line-height:50px;color:#000;background:#fff;left:0;top:0;font-size:30px;padding:5px 20px;z-index:9999;"></div> -->
+
 		<script type="text/javascript">
 
 			// 本人信息
 			var userInfo={head:"images/game1/head.jpg",nickname:"蒙奇·D·路飞"};
 
 			var socketUrl = '116.213.76.9:5000/?chat=';
+			// var socketUrl = '192.168.1.133:5000/?chat=';
 
 			// 房间id
 			var G_roomid = new Date().getTime();

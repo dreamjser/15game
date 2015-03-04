@@ -86,11 +86,28 @@
 
 	// game1图片
 	ImgArr.arr3 = [
-		'images/game3/game3_bg.jpg',
-		'game3_bg_r.jpg',
-		'gamee.png',
+		
+		'images/game3/game3.png',
 		'images/public.png',
-		'images/public_code.png'
+		'images/public_code.png',
+		'images/game3/show/show1.png',
+		'images/game3/show/show2.png',
+		'images/game3/show/show3.png',
+		'images/game3/show/show4.png',
+		'images/game3/show/show5.png',
+		'images/game3/show/show6.png',
+		'images/game3/show/show7.png'
+	];
+
+	// game3 left
+	ImgArr.arr3_left = [
+
+		'images/game3/game3_bg.jpg'
+	];
+	// game3 right
+	ImgArr.arr3_right = [
+
+		'images/game3/game3_bg_r.jpg'
 	];
 
 
