@@ -162,11 +162,11 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 				href : API.game1Src
 			});
 
-			restart.click(function() {
+			restart.tap(function() {
 
 				socket.emit('replay');
 
-				$(this).unbind('click');
+				$(this).unbind('tap');
 			});
 
 		},
@@ -272,7 +272,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	//PC端测试用
 	function clickTestCode(url) {
 
-		$('#code_box').click(function() {
+		$('#code_box').tap(function() {
 
 			window.open(url, 'blank');
 		});
@@ -371,7 +371,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		},6500);
 
 
-		$('.code-show-know').click(function(){
+		$('.code-show-know').tap(function(){
 
 			if(showAni){
 				return;
@@ -384,16 +384,16 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			clearTimeout(c);
 			clearTimeout(d);
 
-			$(this).unbind('click');
+			$(this).unbind('tap');
 
 
 			$('#code_show_box').css({'-webkit-transform':'translate3d(-1500px,0,0)'});
 
 		});
 
-		$('.code-show-reknow').click(function(){
+		$('.code-show-reknow').tap(function(){
 
-			$(this).unbind('click');
+			$(this).unbind('tap');
 
 			replayShowStep();
 		});
@@ -427,13 +427,13 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		playShowAnimation();
 
-		link_sure.click(function() {
+		link_sure.tap(function() {
 
 			socket.emit('confirm', JSON.stringify(userInfo));
 
 			$(this).addClass(CONFIG.linkClass);
 
-			$(this).unbind('click');
+			$(this).unbind('tap');
 
 		});
 
@@ -503,6 +503,23 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 				audio_success.play();
 
+				if(!arrow.hasClass(CONFIG.sawLangClass)){
+
+					arrowClass = 'game-arrow-green';
+
+				}else{
+
+					arrowClass = 'game-arrow-r-green';
+				}
+
+				arrow.addClass(arrowClass);
+
+				delay(function(){
+
+					arrow.removeClass(arrowClass);
+					
+				},200);
+
 				tree_total_num = parseInt(data / CONFIG.sawCount);
 
 				changeSawLang();
@@ -512,7 +529,26 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			socket.on('swipeFail', function(data) {
 
+				var arrowClass;
+
 				audio_fail.play();
+
+				if(!arrow.hasClass(CONFIG.sawLangClass)){
+
+					arrowClass = 'game-arrow-red';
+
+				}else{
+
+					arrowClass = 'game-arrow-r-red';
+				}
+
+				arrow.addClass(arrowClass);
+
+				delay(function(){
+
+					arrow.removeClass(arrowClass);
+
+				},200);
 
 				isTouch = true;
 			});
@@ -584,7 +620,24 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	//绑定touch事件
 	function bindTouchEvent() {
 
-		wrapper.swipeLeft(function() {
+		wrapper.swipeLeft(tapLeft);
+
+		wrapper.swipeRight(tapRight);
+
+		arrow.tap(function(){
+
+			if(!$(this).hasClass(CONFIG.sawLangClass)){
+
+				tapLeft();
+
+			}else{
+
+				tapRight()
+			}
+		});
+
+
+		function tapLeft() {
 
 			if (!isTouch || isTreeFade || isEnd) {
 				return;
@@ -594,9 +647,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			socket.emit("swipeLeft");
 
-		});
+		}
 
-		wrapper.swipeRight(function() {
+		function tapRight() {
 
 			if (!isTouch || isTreeFade || isEnd) {
 				return;
@@ -606,13 +659,13 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			socket.emit("swipeRight");
 
-		});
+		}
 	}
 
 	//绑定断开连接页面确定按钮
 	function bindExitSure() {
 
-		exit_sure.click(function() {
+		exit_sure.tap(function() {
 
 			location.href = API.game1Src;
 		});
@@ -782,7 +835,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		var flag = true,
 			reg = /\d+/;
 
-		price_submit.click(function() {
+		price_submit.tap(function() {
 
 			var qq = $('#price_qq').val();
 
@@ -839,32 +892,32 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			});
 		});
 
-		game_price.click(function() {
+		game_price.tap(function() {
 
 			share_tips.fadeIn('fast');
 		});
 
-		noprice_sure.click(function() {
+		noprice_sure.tap(function() {
 
 			no_price.fadeOut('fast');
 		});
 
-		plantform.click(function() {
+		plantform.tap(function() {
 
 			pubcode.fadeIn('fast');
 		});
 
-		pubcode.click(function() {
+		pubcode.tap(function() {
 
 			$(this).fadeOut('fast');
 		});
 
-		full_sure.click(function(){
+		full_sure.tap(function(){
 
 			location.href = API.game1Src;
 		});
 
-		share_tips.click(function(){
+		share_tips.tap(function(){
 
 			$(this).fadeOut('fast');
 		});

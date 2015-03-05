@@ -108,6 +108,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 	var socket,
 		time_number = CONFIG.time,
+		whole_angle = 0,
 		total_meters = 0,
 		meters_auto = 0,
 		score_count = 0,
@@ -532,7 +533,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 					ang = m[1],
 					t = m[2];
 
-				// $('#debug').html(ang);
+				whole_angle = ang;
 
 				updateAngles(ang, t);
 
@@ -656,6 +657,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	//绑定touch事件
 	function bindTouchEvent() {
 
+
 		if (isLeft) {
 
 			arrow_top.tap(turnUp);
@@ -671,13 +673,47 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		function turnUp(e) {
 
+			var arrowClass,
+				self = this;
+
 			if (isEnd) {
 				return;
 			}
 
+			if(whole_angle>0){
+
+				if(this === arrow_top[0]){
+
+					arrowClass = 'arrow-top-red';
+				}else{
+					arrowClass = 'arrow-bottom-red';
+				}
+			}else{
+
+				if(this === arrow_top[0]){
+
+					arrowClass = 'arrow-top-green';
+				}else{
+					arrowClass ='arrow-bottom-green';
+				}
+			}
+
+			$(this).addClass(arrowClass);
+
+			delay(function(){
+
+				$(self).removeClass(arrowClass);
+
+			},200);
+
 			e.preventDefault();
 
 			audio_click.play();
+
+			$(this).animate({scale:1.2}, 200, 'easeOut', function(){
+
+				$(this).css({'-webkit-transform':'scale(1)'});
+			});
 
 			socket.emit("up");
 
@@ -685,13 +721,48 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		function turnDown(e) {
 
+			var arrowClass,
+				self = this;
+
 			if (isEnd) {
 				return;
 			}
 
+			if(whole_angle>0){
+
+				if(this === arrow_top[0]){
+
+					arrowClass = 'arrow-top-green';
+				}else{
+					arrowClass = 'arrow-bottom-green';
+				}
+			}else{
+
+				if(this === arrow_top[0]){
+
+					arrowClass = 'arrow-top-red';
+				}else{
+					arrowClass ='arrow-bottom-red';
+				}
+			}
+
+			$(this).addClass(arrowClass);
+
+			delay(function(){
+
+				$(self).removeClass(arrowClass);
+				
+			},200);
+
+
 			e.preventDefault();
 
 			audio_click.play();
+
+			$(this).animate({scale:1.2}, 200, 'easeOut', function(){
+
+				$(this).css({'-webkit-transform':'scale(1)'});
+			});
 
 			socket.emit("down");
 		}

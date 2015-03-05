@@ -739,8 +739,9 @@ body {
   background-position: -5px -5px;
 }
 .game-code .code-desc1 .code-desc-pic3 {
-  width: 406px;
+  width: 624px;
   height: 71px;
+  margin-left: -23px;
   background: url(../images/game3/game3.png) no-repeat;
   background-position: 0px -830px;
 }
@@ -1344,11 +1345,28 @@ body {
 .wrapper .game3-arrow div {
   width: 90px;
   height: 90px;
+  -webkit-transform-origin: center center;
   background: url(../images/game3/game3.png) no-repeat;
   background-position: -765px -105px;
 }
 .wrapper .game3-arrow div:last-child {
   background-position: -765px -5px;
+}
+.wrapper .game3-arrow div.arrow-top-red {
+  background: url(../images/game3/game3.png) no-repeat;
+  background-position: -1221px -856px;
+}
+.wrapper .game3-arrow div.arrow-top-green {
+  background: url(../images/game3/game3.png) no-repeat;
+  background-position: -1221px -948px;
+}
+.wrapper .game3-arrow div.arrow-bottom-red {
+  background: url(../images/game3/game3.png) no-repeat;
+  background-position: -1334px -856px;
+}
+.wrapper .game3-arrow div.arrow-bottom-green {
+  background: url(../images/game3/game3.png) no-repeat;
+  background-position: -1334px -948px;
 }
 .wrapper .game3-stick {
   width: 587px;
