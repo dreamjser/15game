@@ -242,7 +242,7 @@ body {
   background: url(../images/public.png) no-repeat;
 }
 .game1-bg {
-  background: url(../images/game1/game1.png) no-repeat;
+  background: url(../images/game1/game1.png?v=1.0) no-repeat;
 }
 .game3-bg {
   background: url(../images/game3/game3.png) no-repeat;
@@ -577,7 +577,7 @@ body {
   width: 500px;
   height: 42px;
   margin: 0 auto;
-  background: url(../images/game1/game1.png) no-repeat;
+  background: url(../images/game1/game1.png?v=1.0) no-repeat;
   background-position: 0 -610px;
 }
 .game-share .game-share-top .game-share-title span {
@@ -623,7 +623,7 @@ body {
 }
 .game-share .game-share-top .game-share-words .game-share-wordspic {
   height: 143px;
-  background: url(../images/game1/game1.png) no-repeat;
+  background: url(../images/game1/game1.png?v=1.0) no-repeat;
   background-position: 0 0;
 }
 .game-share .game-share-top .game-share-words .game-share-wordspic3 {
@@ -638,7 +638,7 @@ body {
   height: 134px;
   left: 220px;
   top: -67px;
-  background: url(../images/game1/game1.png) no-repeat;
+  background: url(../images/game1/game1.png?v=1.0) no-repeat;
   background-position: -606px -106px;
 }
 .game-share .game-share-top .game-share-words .game-share-icon3 {
@@ -686,7 +686,7 @@ body {
   width: 370px;
   height: 108px;
   margin: 70px auto 40px;
-  background: url(../images/game1/game1.png) no-repeat;
+  background: url(../images/game1/game1.png?v=1.0) no-repeat;
   background-position: -8px -754px;
 }
 .game-code .code-title3 {
@@ -721,7 +721,7 @@ body {
   left: 50%;
   margin-left: -70px;
   bottom: -70px;
-  background: url(../images/game1/game1.png) no-repeat;
+  background: url(../images/game1/game1.png?v=1.0) no-repeat;
   background-position: -606px -106px;
 }
 .game-code .code-desc .code-icon3 {
@@ -950,7 +950,7 @@ body {
 .game-link .link-desc .link-desc-pic {
   width: 524px;
   height: 298px;
-  background: url(../images/game1/game1.png) no-repeat;
+  background: url(../images/game1/game1.png?v=1.0) no-repeat;
   background-position: 0 -300px;
 }
 .game-link .link-desc .link-desc-pic3 {
@@ -1350,7 +1350,7 @@ body {
   background-position: -765px -105px;
 }
 .wrapper .game3-arrow div:last-child {
-  background-position: -765px -5px;
+  background-position: -763px -5px;
 }
 .wrapper .game3-arrow div.arrow-top-red {
   background: url(../images/game3/game3.png) no-repeat;

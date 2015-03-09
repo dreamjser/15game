@@ -86,7 +86,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 		'images/game3/show/show7.png'
 	];
 
-
 	var CONFIG = {
 
 		duration: 800,
@@ -171,7 +170,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		gameOver: function() {
 
-			var content = userInfo.nickname + '和' + oUserInfo.nickname + '在山路上担水前进' + total_meters + '米，快来一起玩，看看你和谁可以桶一步调！';
+			var content = userInfo.nickname + '和' + oUserInfo.nickname + '在山路上担水前进' + total_meters + '米，快来一起玩，看看你和谁可以心灵相“桶”！';
 
 			isEnd = true;
 
@@ -273,7 +272,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 		if (roomId == null || roomId.length < 10) {
 
-			clickTestCode(url); //测试用
+			// clickTestCode(url); //测试用
 			createCode(url);
 			code.show();
 			isLeft = true;
@@ -657,6 +656,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	//绑定touch事件
 	function bindTouchEvent() {
 
+		var up,down;
 
 		if (isLeft) {
 
@@ -700,11 +700,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			$(this).addClass(arrowClass);
 
-			delay(function(){
-
-				$(self).removeClass(arrowClass);
-
-			},200);
 
 			e.preventDefault();
 
@@ -713,6 +708,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			$(this).animate({scale:1.2}, 200, 'easeOut', function(){
 
 				$(this).css({'-webkit-transform':'scale(1)'});
+				$(this).removeClass(arrowClass);
 			});
 
 			socket.emit("up");
@@ -748,12 +744,6 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			$(this).addClass(arrowClass);
 
-			delay(function(){
-
-				$(self).removeClass(arrowClass);
-				
-			},200);
-
 
 			e.preventDefault();
 
@@ -762,6 +752,7 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			$(this).animate({scale:1.2}, 200, 'easeOut', function(){
 
 				$(this).css({'-webkit-transform':'scale(1)'});
+				$(this).removeClass(arrowClass);
 			});
 
 			socket.emit("down");
