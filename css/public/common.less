@@ -27,7 +27,7 @@ body{
 
 .game1-bg{
 
-	background: url(../images/game1/game1.png?v=1.0) no-repeat;
+	background: url(../images/game1/game1.png) no-repeat;
 }
 
 .game3-bg{
@@ -105,6 +105,13 @@ body{
 			}
 		}
 	}
+}
+
+.share-mask{
+
+	z-index: 9999;
+	left: 0;
+	top: 0;
 }
 
 .game-full{
@@ -436,6 +443,9 @@ body{
 				p{
 					font-size: 30px;
 					margin-top: 20px;
+					height: 35px;
+					line-height: 35px;
+					overflow: hidden;
 				}
 
 				&:last-child{

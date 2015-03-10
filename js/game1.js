@@ -164,9 +164,10 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 
 			restart.tap(function() {
 
-				socket.emit('replay');
+				// socket.emit('replay');
 
-				$(this).unbind('tap');
+				// $(this).unbind('tap');
+				location.href = API.home;
 			});
 
 		},
@@ -282,8 +283,10 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 	function setRoomId() {
 
 		var c = G_roomid,
-			href = location.href,
-			url = href.indexOf('?') > 0 ? href + '&chat=' + c : href + '?chat=' + c;
+            href = location.href,
+            mainUrl = location.search === '' ? href : href.substring(0,href.indexOf(location.search)),
+            url = mainUrl+"?chat="+c;
+            // url = API.game1Src+"?chat="+c;
 
 		if (roomId == null || roomId.length < 10) {
 
@@ -567,7 +570,9 @@ require(['zepto', 'io', 'qrcode', 'public', 'load', 'sprite', 'share'], function
 			socket.on('exit', function(data) {
 
 				console.log('exit');
-
+				if(isEnd){
+					return;
+				}
 				exit.show();
 			});
 

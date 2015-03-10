@@ -64,17 +64,17 @@ require(['zepto', 'public', 'load', 'sprite', 'share'], function($, Pub, load, s
 
 	function bindClose() {
 
-		close.click(function() {
+		close.tap(function() {
 
 			read.fadeOut('fast');
 		});
 
-		read_btn.click(function() {
+		read_btn.tap(function() {
 
 			read.fadeIn('fast');
 		});
 
-		$('.index-menu').click(function(){
+		/*$('.index-menu').tap(function(){
 
 			if($(this).data('online') === 'none'){
 
@@ -82,9 +82,9 @@ require(['zepto', 'public', 'load', 'sprite', 'share'], function($, Pub, load, s
 				return false;
 			}
 			
-		});
+		});*/
 
-		return_btn.click(function() {
+		return_btn.tap(function() {
 
 			online.fadeOut('fast');
 		});

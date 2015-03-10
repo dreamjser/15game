@@ -90,6 +90,7 @@
 		'images/game3/game3.png',
 		'images/public.png',
 		'images/public_code.png',
+		'images/game1/game1_show.png',
 		'images/game3/show/show1.png',
 		'images/game3/show/show2.png',
 		'images/game3/show/show3.png',

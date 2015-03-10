@@ -304,6 +304,11 @@ body {
   z-index: 5;
   -webkit-animation: loading2 2s linear infinite;
 }
+.share-mask {
+  z-index: 9999;
+  left: 0;
+  top: 0;
+}
 .game-full {
   background: rgba(0, 0, 0, 0.88);
   z-index: 999;
@@ -561,6 +566,9 @@ body {
 .game-share .game-share-top .game-share-head div p {
   font-size: 30px;
   margin-top: 20px;
+  height: 35px;
+  line-height: 35px;
+  overflow: hidden;
 }
 .game-share .game-share-top .game-share-head div:last-child {
   left: inherit;
