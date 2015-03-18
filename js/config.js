@@ -67,7 +67,15 @@
 		'images/game1/show/show1.png',
 		'images/game1/show/show2.png',
 		'images/game1/show/show3.png',
-		'images/game1/show/show4.png'
+		'images/game1/show/show4.png',
+		'images/game1/show/show5.png',
+		'images/game1/show/show6.png',
+		'images/game1/show/show7.png',
+		'images/game1/show/show8.png',
+		'images/game1/show/show9.png',
+		'images/game1/show/show10.png',
+		'images/game1/show/show11.png',
+		'images/game1/show/show12.png'
 	];
 	// game1 left
 	ImgArr.arr1_left = [
