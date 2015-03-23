@@ -90,6 +90,17 @@ require(['zepto', 'public', 'load', 'sprite', 'share'], function($, Pub, load, s
 		});
 	}
 
+	function isWeiXin() {
+
+		var ua = window.navigator.userAgent.toLowerCase();
+
+		if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	function init() {
 
 		$('#loading').fadeOut('fast');
@@ -160,35 +171,35 @@ require(['zepto', 'public', 'load', 'sprite', 'share'], function($, Pub, load, s
 
 								doAni(menu.eq(2), menuCss, function() {
 
-									doAni(cloud1, cloudeCss1, function(){
+									doAni(cloud1, cloudeCss1, function() {
 
-										doAni(cloud2, cloudeCss2, function(){
+										doAni(cloud2, cloudeCss2, function() {
 
-											doAni(cloud3, cloudeCss2, function(){
+											doAni(cloud3, cloudeCss2, function() {
 
-												doAni($('.index-sun'), sunClass, function(){
+												doAni($('.index-sun'), sunClass, function() {
 
 													$('.index-cloud2,.index-cloud1').addClass('index-animation');
 
 
-												},SPEED);
+												}, SPEED);
 
-												delay(function(){
-										
+												delay(function() {
+
 													read_btn.fadeIn('fast');
 
-													truck.fadeIn('fast',function(){
-														
+													truck.fadeIn('fast', function() {
+
 														Sp.init();
 													});
 
-												},SPEED);
-												
-											},SPEED);
+												}, SPEED);
 
-										},SPEED);
+											}, SPEED);
 
-									},SPEED);
+										}, SPEED);
+
+									}, SPEED);
 
 
 								}, 2 * SPEED);
@@ -210,13 +221,19 @@ require(['zepto', 'public', 'load', 'sprite', 'share'], function($, Pub, load, s
 
 	var imgLoader = new ImgLoader(imgArr);
 
+	if(!isWeiXin()){
+
+		$('#no_wx').show();
+
+	}
+
 	imgLoader.completed(init);
 
 	imgLoader.start();
 
 	pub_share({
 
-		content : Share.content
+		content: Share.content
 	});
 
 });

@@ -281,7 +281,7 @@ body {
   left: 0;
   top: 0;
   background: #000;
-  z-index: 9999;
+  z-index: 9998;
 }
 .loading .loading-icon {
   width: 158px;
@@ -1272,6 +1272,20 @@ body {
 }
 a {
   -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+}
+.no-wx {
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+.no-wx img {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  margin-left: -305px;
+  margin-top: -374px;
+  width: 637px;
+  height: 749px;
 }
 html,
 body {
